@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Models in Physical AI — NeurIPS 2026 Workshop</title>
+<meta name="description" content="World Models in Physical AI: a one-day NeurIPS 2026 workshop on learned models to simulate, plan, and act in the real world — bringing together generative AI, reinforcement learning, robotics, and simulation. Sydney, December 2026.">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:title" content="World Models in Physical AI — NeurIPS 2026 Workshop">
+<meta property="og:description" content="A one-day NeurIPS 2026 workshop on learned models of physical-world dynamics for embodied AI. Sydney, December 2026.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0f'/%3E%3Cpath d='M4 20c4-6 8 6 12 0s8-6 12 0' fill='none' stroke='%2322d3ee' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='23' cy='11' r='2' fill='%237f77dd'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f; --bg2:#0f1016; --panel:#12141c;
+    --cyan:#22d3ee; --violet:#8b83f0; --grad:linear-gradient(90deg,#22d3ee,#8b83f0);
+    --ink:#0b0b12; --body:#3f4450; --muted:#6b7180;
+    --light:#ffffff; --light2:#f5f6f9; --line:#e7e9ee;
+    --ondark:#e9ebf2; --ondark-mut:#9aa1b4; --line-dark:rgba(255,255,255,.12);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--body);background:var(--light);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;color:var(--ink);line-height:1.12;font-weight:600;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#0e8ba3}
+  .eyebrow.on-dark{color:var(--cyan)}
+  section{padding:88px 0}
+  .sec-head{max-width:760px;margin-bottom:44px}
+  .sec-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin:14px 0 0}
+  .sec-head p{margin-top:16px;font-size:1.06rem;color:var(--muted)}
+
+  /* NAV */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,15,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-dark)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--ondark);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.98rem;letter-spacing:-.01em}
+  .brand .mark{width:30px;height:30px;border-radius:8px;background:var(--bg2);border:1px solid var(--line-dark);display:grid;place-items:center;flex:none}
+  .brand .mark svg{width:20px;height:20px}
+  .navlinks{display:flex;align-items:center;gap:6px}
+  .navlinks a{color:var(--ondark-mut);font-size:.9rem;font-weight:500;padding:8px 12px;border-radius:8px;transition:.18s}
+  .navlinks a:hover{color:var(--light);background:rgba(255,255,255,.06)}
+  .navlinks a.cta{color:#06131a;background:var(--cyan);font-weight:600;margin-left:6px}
+  .navlinks a.cta:hover{background:#5ee0f2;color:#06131a}
+  .burger{display:none;background:none;border:1px solid var(--line-dark);border-radius:8px;width:40px;height:38px;color:var(--ondark);cursor:pointer;align-items:center;justify-content:center}
+  .burger svg{width:22px;height:22px}
+
+  /* HERO */
+  .hero{position:relative;background:var(--bg);color:var(--ondark);overflow:hidden;padding:150px 0 96px}
+  .hero-inner .wavemark{position:absolute;left:-2px;bottom:-250px;width:100%;z-index:-1;pointer-events:none;opacity:1}
+  .hero-inner .wave-dots{position:absolute;left:-2px;bottom:-80px;width:100%;z-index:-1;pointer-events:none;opacity:.3}
+  .hero-inner .wavemark svg,.hero-inner .wave-dots svg{width:100%;height:auto;display:block;overflow:visible}
+  .hero .glow{position:absolute;top:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.14),transparent 62%);pointer-events:none}
+  .hero .glow.v{top:auto;bottom:-220px;left:-160px;right:auto;background:radial-gradient(circle,rgba(139,131,240,.13),transparent 62%)}
+  .hero-inner{position:relative;z-index:2;max-width:880px}
+  .hero h1{color:var(--light);font-size:clamp(2.5rem,6.4vw,4.6rem);font-weight:700;line-height:1.02;letter-spacing:-.025em;margin:22px 0 0}
+  .hero h1 .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero .lede{margin-top:26px;font-size:clamp(1.05rem,2vw,1.32rem);color:var(--ondark);max-width:660px;line-height:1.5}
+  .hero .meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 26px;color:var(--ondark-mut);font-size:.98rem}
+  .hero .meta b{color:var(--ondark);font-weight:600}
+  .hero .meta .dot{color:var(--cyan);font-size:.7em;vertical-align:middle}
+  .btns{margin-top:38px;display:flex;flex-wrap:wrap;gap:14px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:11px;font-weight:600;font-size:.98rem;cursor:pointer;transition:.2s;border:1px solid transparent}
+  .btn-primary{background:var(--grad);color:#05131a}
+  .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn-ghost{border-color:var(--line-dark);color:var(--ondark)}
+  .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3)}
+  .btn svg{width:18px;height:18px}
+
+  /* TOPIC STRIP */
+  .strip{background:var(--bg2);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:30px 0}
+  .strip-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .topic{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:14px 8px;border-radius:14px;transition:.2s}
+  .topic:hover{background:rgba(255,255,255,.03)}
+  .topic .ic{width:52px;height:52px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(150deg,rgba(34,211,238,.16),rgba(139,131,240,.16));border:1px solid rgba(34,211,238,.28)}
+  .topic .ic svg{width:26px;height:26px;stroke:var(--cyan);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .topic span{font-size:.86rem;font-weight:500;color:var(--ondark);line-height:1.3}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+  .about-grid p{font-size:1.08rem;margin-bottom:18px}
+  .pull{border-left:3px solid var(--cyan);padding:22px 26px;background:var(--light2);border-radius:0 14px 14px 0}
+  .pull .q{font-family:'Space Grotesk',sans-serif;font-size:1.22rem;font-weight:500;color:var(--ink);line-height:1.4;letter-spacing:-.01em}
+  .pull .src{margin-top:14px;font-size:.86rem;color:var(--muted)}
+
+  /* CARDS */
+  .grid{display:grid;gap:20px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--light);border:1px solid var(--line);border-radius:16px;padding:26px;transition:.2s}
+  .card:hover{border-color:#c9cdd8;transform:translateY(-2px);box-shadow:0 12px 30px -18px rgba(11,11,18,.25)}
+  .card .ci{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:rgba(34,211,238,.12);margin-bottom:16px}
+  .card .ci svg{width:23px;height:23px;stroke:#0e8ba3;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .card h3{font-size:1.12rem;margin-bottom:8px}
+  .card p{font-size:.96rem;color:var(--muted);line-height:1.55}
+
+  /* QUESTIONS */
+  .q-list{display:grid;grid-template-columns:1fr 1fr;gap:18px 40px;margin-top:8px}
+  .qitem{display:flex;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+  .qitem .num{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;color:var(--cyan);background:var(--ink);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none}
+  .qitem h4{font-size:1.06rem;margin-bottom:5px}
+  .qitem p{font-size:.95rem;color:var(--muted);line-height:1.55}
+
+  /* CFP placeholder */
+  .placeholder{border:1.5px dashed #cfd4de;border-radius:18px;padding:44px;text-align:center;background:var(--light2)}
+  .placeholder .badge{display:inline-block;font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#0e8ba3;background:rgba(34,211,238,.12);padding:6px 14px;border-radius:20px;margin-bottom:16px}
+  .placeholder h3{font-size:1.5rem;margin-bottom:10px}
+  .placeholder p{color:var(--muted);max-width:560px;margin:0 auto;font-size:1.02rem}
+
+  /* DATES timeline */
+  .timeline{position:relative;margin-top:10px}
+  .timeline::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tl{position:relative;padding:0 0 30px 44px}
+  .tl:last-child{padding-bottom:0}
+  .tl .node{position:absolute;left:2px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--light);border:2px solid var(--line)}
+  .tl.key .node{border-color:var(--cyan);background:var(--cyan);box-shadow:0 0 0 4px rgba(34,211,238,.16)}
+  .tl .date{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--ink);font-size:1.02rem}
+  .tl .lbl{font-size:.98rem;color:var(--muted);margin-top:2px}
+  .tl.key .lbl{color:var(--body)}
+  .dates-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .dates-note{background:var(--ink);color:var(--ondark);border-radius:18px;padding:32px}
+  .dates-note h3{color:#fff;font-size:1.24rem;margin-bottom:12px}
+  .dates-note p{color:var(--ondark-mut);font-size:.98rem;margin-bottom:14px}
+  .dates-note .chip{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;color:var(--cyan);border:1px solid var(--line-dark);padding:7px 13px;border-radius:9px;margin:4px 6px 0 0}
+
+  /* SCHEDULE */
+  .sched{max-width:860px}
+  .slot{display:grid;grid-template-columns:120px 1fr;gap:22px;padding:20px 0;border-top:1px solid var(--line);align-items:baseline}
+  .slot .time{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--ink);font-size:.98rem}
+  .slot h4{font-size:1.08rem;margin-bottom:3px}
+  .slot p{font-size:.94rem;color:var(--muted)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-left:10px;vertical-align:middle}
+  .tag.invited{color:#0e8ba3;background:rgba(34,211,238,.13)}
+  .tag.discuss{color:#5b52c9;background:rgba(139,131,240,.15)}
+  .tag.challenge{color:#b45309;background:rgba(245,158,11,.14)}
+  .tag.break{color:#6b7180;background:#eef0f4}
+  .tag.papers{color:#0e8f6f;background:rgba(16,143,111,.14)}
+  a.tag{cursor:pointer;text-decoration:none;transition:filter .15s}
+  a.tag:hover{filter:brightness(.93)}
+  .sched-note{margin-top:18px;font-size:.9rem;color:var(--muted);font-style:italic}
+
+  /* CHALLENGE band */
+  .band{background:var(--bg);color:var(--ondark);position:relative;overflow:hidden}
+  .band .glow{position:absolute;top:-120px;right:10%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.12),transparent 62%);pointer-events:none}
+  .band-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:34px;align-items:center}
+  .band h2{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem)}
+  .band p{color:var(--ondark-mut);margin-top:14px;max-width:640px;font-size:1.05rem}
+
+  /* PEOPLE */
+  .people{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+  .people.orgs{grid-template-columns:repeat(5,1fr)}
+  .person{text-align:center}
+  .avatar,.avatar-fallback{width:100%;aspect-ratio:1;border-radius:16px;object-fit:cover;background:var(--bg2);border:1px solid var(--line)}
+  .avatar-fallback{display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.9rem;color:var(--cyan);background:linear-gradient(155deg,#12141c,#0b0b12);border:1px solid #23262f;letter-spacing:.02em}
+  .person .nm{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--ink);font-size:1.02rem;margin-top:14px;display:inline-flex;align-items:center;gap:6px}
+  .person .nm svg{width:14px;height:14px;opacity:.4;transition:.15s}
+  .person a.nm:hover{color:#0e8ba3}
+  .person a.nm:hover svg{opacity:.9}
+  .person .af{font-size:.9rem;color:var(--muted);margin-top:4px;line-height:1.4}
+  .contact-line{margin-top:40px;text-align:center;font-size:.98rem;color:var(--muted)}
+  .contact-line a{color:#0e8ba3;font-weight:500}
+
+  /* FOOTER */
+  footer{background:var(--bg);color:var(--ondark-mut);padding:64px 0 40px;border-top:1px solid var(--line-dark)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line-dark)}
+  .foot-grid h4{color:#fff;font-size:1rem;margin-bottom:14px}
+  .foot-grid p,.foot-grid a{font-size:.94rem;color:var(--ondark-mut);line-height:1.7}
+  .foot-grid a:hover{color:var(--cyan)}
+  .foot-brand{color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.1rem;display:flex;align-items:center;gap:11px;margin-bottom:14px}
+  .foot-brand .mark{width:32px;height:32px;border-radius:9px;background:var(--bg2);border:1px solid var(--line-dark);display:grid;place-items:center}
+  .foot-brand .mark svg{width:21px;height:21px}
+  .foot-bottom{padding-top:26px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:.86rem;color:#6a7183}
+  .foot-bottom .pills span{color:var(--ondark-mut);border:1px solid var(--line-dark);padding:4px 11px;border-radius:20px;margin-left:8px}
+
+  @media(max-width:920px){
+    .about-grid,.dates-wrap{grid-template-columns:1fr;gap:34px}
+    .g3{grid-template-columns:1fr 1fr}
+    .q-list{grid-template-columns:1fr}
+    .people,.people.orgs{grid-template-columns:repeat(3,1fr)}
+    .strip-grid{grid-template-columns:repeat(5,1fr);gap:6px}
+    .topic span{font-size:.76rem}
+    .band-inner{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:640px){
+    section{padding:64px 0}
+    .navlinks{position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;background:rgba(10,10,15,.97);backdrop-filter:blur(12px);padding:12px 16px 18px;border-bottom:1px solid var(--line-dark);display:none}
+    .navlinks.open{display:flex}
+    .navlinks a{padding:12px 14px}
+    .navlinks a.cta{margin-left:0;text-align:center;margin-top:6px}
+    .burger{display:flex}
+    .g3{grid-template-columns:1fr}
+    .strip-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .people,.people.orgs{grid-template-columns:repeat(2,1fr)}
+    .slot{grid-template-columns:1fr;gap:4px}
+    .foot-grid{grid-template-columns:1fr}
+    .sec-head{margin-bottom:32px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <span class="mark"><svg viewBox="0 0 32 32"><path d="M4 20c4-6 8 6 12 0s8-6 12 0" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="11" r="2" fill="#8b83f0"/></svg></span>
+      World Models in Physical AI
+    </a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('nav').classList.toggle('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="navlinks" id="nav">
+      <a href="#about">About</a>
+      <a href="#topics">Topics</a>
+      <a href="#dates">Dates</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#organizers">Organizers</a>
+      <a href="#cfp" class="cta">Call for papers</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="glow"></div><div class="glow v"></div>
+  <div class="wrap hero-inner">
+    <div class="wavemark" aria-hidden="true">
+      <svg viewBox="3.5 8 25 19" fill="none" preserveAspectRatio="xMidYMid meet">
+        <path d="M4 20c4-6 8 6 12 0s8-6 12 0" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.3" vector-effect="non-scaling-stroke"/>
+        <path d="M4 20.43c4-6 8 6 12 0s8-6 12 0" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.2" vector-effect="non-scaling-stroke"/>
+        <path d="M4 20.85c4-6 8 6 12 0s8-6 12 0" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+        <circle cx="24.14" cy="12.99" r="0.26" fill="none" stroke="#8b83f0" stroke-width="2.5" stroke-opacity="0.4" vector-effect="non-scaling-stroke"/>
+        <circle cx="24.14" cy="12.99" r="0.54" fill="none" stroke="#8b83f0" stroke-width="2.5" stroke-opacity="0.25" vector-effect="non-scaling-stroke"/>
+        <circle cx="24.14" cy="12.99" r="0.83" fill="none" stroke="#8b83f0" stroke-width="2.5" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+    <div class="wave-dots" aria-hidden="true">
+      <svg viewBox="3.5 8 25 19" fill="none" preserveAspectRatio="xMidYMid meet">
+        <circle cx="7" cy="12.5" r="0.13" fill="#22d3ee"/>
+        <circle cx="12.5" cy="24" r="0.11" fill="#22d3ee"/>
+        <circle cx="17" cy="10.5" r="0.15" fill="#22d3ee"/>
+        <circle cx="21.5" cy="24.5" r="0.12" fill="#22d3ee"/>
+        <circle cx="26.5" cy="14.5" r="0.14" fill="#22d3ee"/>
+        <circle cx="9.5" cy="18.5" r="0.1" fill="#22d3ee"/>
+      </svg>
+    </div>
+    <span class="eyebrow on-dark">NeurIPS 2026 Workshop · Sydney</span>
+    <h1>World Models<br>in <span class="accent">Physical AI</span></h1>
+    <p class="lede">Learned models that simulate, plan, and act in the real world — bringing together generative modeling, reinforcement learning, robotics, computer vision, autonomous driving, and simulation.</p>
+    <div class="meta">
+      <span><span class="dot">●</span> <b>December 12–13, 2026</b></span>
+      <span><span class="dot">●</span> <b>Sydney, Australia</b></span>
+    </div>
+    <div class="btns">
+      <a href="#cfp" class="btn btn-primary">Call for papers
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#schedule" class="btn btn-ghost">View schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOPIC STRIP ============ -->
+<div class="strip">
+  <div class="wrap strip-grid">
+    <div class="topic"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 18c3-1 4-9 7-9s3 5 5 5 3-6 6-7"/><circle cx="3" cy="18" r="1.3" fill="#22d3ee" stroke="none"/><circle cx="21" cy="7" r="1.3" fill="#22d3ee" stroke="none"/></svg></span><span>Trajectories</span></div>
+    <div class="topic"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></span><span>3D &amp; contact dynamics</span></div>
+    <div class="topic"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>Occupancy &amp; latents</span></div>
+    <div class="topic"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14v5H5zM5 16v2M19 16v2"/><circle cx="8" cy="16" r="1.3" fill="#22d3ee" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="#22d3ee" stroke="none"/></svg></span><span>Autonomous driving</span></div>
+    <div class="topic"><span class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="10" rx="2"/><path d="M12 8V4M9 4h6"/><circle cx="9.5" cy="13" r="1.2" fill="#22d3ee" stroke="none"/><circle cx="14.5" cy="13" r="1.2" fill="#22d3ee" stroke="none"/><path d="M3 12v3M21 12v3"/></svg></span><span>Robotics</span></div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">About the workshop</span>
+      <h2>Making world models actionable, physically grounded, and deployable</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>World models predict how an environment evolves, optionally conditioned on an agent's actions, and can be rolled out to imagine future observations and outcomes. For physical-AI systems — robots, autonomous vehicles, and embodied agents — this capability is central: an agent that can simulate its world can plan, learn from imagined experience, and handle situations missing from its training data.</p>
+        <p>Progress now spans latent-dynamics models for control, interactive and generative video simulators, foundation world-model platforms, and closed-loop autonomous-driving simulation. Model-based RL, generative simulation, and video prediction are all converging on controllable models of the world — but in separate communities. This one-day workshop brings them together to ask what world models must deliver to serve as a deployable computational substrate for physical AI.</p>
+      </div>
+      <div class="pull">
+        <div class="q">"An agent that can simulate its world can plan, learn from imagined experience, and act where its training data runs out."</div>
+        <div class="src">The premise of world models for physical AI — from generative simulators to latent, planning-friendly state spaces.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOPICS ============ -->
+<section id="topics" style="background:var(--light2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Scope</span>
+      <h2>Topics we invite</h2>
+      <p>Talks, papers, and discussion spanning the pipeline from data and representations, through evaluation, to planning and control.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card"><div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><path d="M14 15h7v5h-7z"/></svg></div><h3>Representations &amp; architectures</h3><p>Latent vs. pixel/video models, JEPA embeddings, identifiable latents, omnimodal models, 3D and contact dynamics.</p></div>
+      <div class="card"><div class="ci"><svg viewBox="0 0 24 24"><path d="M12 3v6M12 9l-4 4M12 9l4 4M6 13a6 6 0 1 0 12 0"/></svg></div><h3>World models for action</h3><p>Model-based RL, planning and control, learning in imagination, forward and inverse dynamics, world-action models.</p></div>
+      <div class="card"><div class="ci"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 6v12h16V6M8 10l3 3-3 3M14 16h3"/></svg></div><h3>Generative simulation</h3><p>World models as data generators and interactive closed-loop simulators for robotics and driving; sim-to-real and real-to-sim.</p></div>
+      <div class="card"><div class="ci"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0M12 7v5l3 2"/></svg></div><h3>Evaluation</h3><p>Measuring whether world models are physically correct, causally faithful, and useful for downstream control; benchmarking robustness and generalization.</p></div>
+      <div class="card"><div class="ci"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></div><h3>Scaling &amp; foundation models</h3><p>Data, compute, and generalization of large pretrained world models across embodiments and domains.</p></div>
+      <div class="card"><div class="ci"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4"/></svg></div><h3>Safety &amp; broader impact</h3><p>Reliability, safety, and the broader impact of world models that drive real physical systems.</p></div>
+    </div>
+
+    <div class="sec-head" id="questions" style="margin-top:72px">
+      <span class="eyebrow">The debate</span>
+      <h2>Open questions we'll take positions on</h2>
+      <p>The program — talks, a panel, and a closing debate — is organized around concrete, contested questions.</p>
+    </div>
+    <div class="q-list">
+      <div class="qitem"><div class="num">1</div><div><h4>What does "correct" mean?</h4><p>Can we agree on benchmarks that measure physical consistency and downstream control utility — not just pixel fidelity? For closed-loop simulators, should evaluation preserve policy rankings and real-world failure modes?</p></div></div>
+      <div class="qitem"><div class="num">2</div><div><h4>Pixels vs. latents</h4><p>Should world models predict in observation space or in abstract latent space? When are inspectable rollouts necessary, and when are identifiable, low-dimensional latents enough for planning and control?</p></div></div>
+      <div class="qitem"><div class="num">3</div><div><h4>Controllability &amp; long horizons</h4><p>How do we keep rollouts action-controllable and physically consistent over long horizons — preserving object identity, contact, causality, and state under repeated interventions?</p></div></div>
+      <div class="qitem"><div class="num">4</div><div><h4>Sim-to-real &amp; real-to-sim</h4><p>When can a generative world model replace or augment a physics or reconstruction-based simulator for training and evaluating deployable policies?</p></div></div>
+      <div class="qitem"><div class="num">5</div><div><h4>Scaling laws</h4><p>Do world models for physical AI follow favorable scaling laws, and what multimodal data unlocks generalization to new embodiments, action spaces, and domains?</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALL FOR PAPERS (placeholder — fill after acceptance) ============ -->
+<!--
+  TO FILL LATER: replace the .placeholder block below with submission details.
+  Confirmed frame from the proposal (edit as needed):
+    • Extended abstracts up to 4 pages, plus a 2-page short-paper option
+    • Non-archival; managed on OpenReview
+    • Work already published or presented at the main conference is not eligible
+    • Submission deadline: 29 August 2026  ·  Notification: by 29 September 2026
+  Suggested filled structure: intro line → submission format → topics link →
+  OpenReview submit button → reviewer sign-up → dates recap.
+-->
+<section id="cfp">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Participate</span>
+      <h2>Call for papers</h2>
+    </div>
+    <div class="placeholder">
+      <span class="badge">Coming soon</span>
+      <h3>The call for papers will be posted here</h3>
+      <p>Submission format, templates, the OpenReview link, and reviewer sign-up will be announced after acceptance notifications. Check back shortly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IMPORTANT DATES ============ -->
+<section id="dates" style="background:var(--light2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Timeline</span>
+      <h2>Important dates</h2>
+      <p>All deadlines are anywhere-on-Earth (AoE). Dates are tentative and will be confirmed with the call for papers.</p>
+    </div>
+    <div class="dates-wrap">
+      <div class="timeline">
+        <div class="tl"><span class="node"></span><div class="date">Late July 2026</div><div class="lbl">Call for papers released</div></div>
+        <div class="tl key"><span class="node"></span><div class="date">August 29, 2026</div><div class="lbl">Submission deadline</div></div>
+        <div class="tl"><span class="node"></span><div class="date">Aug 30 – Sept 20, 2026</div><div class="lbl">Reviewing period</div></div>
+        <div class="tl key"><span class="node"></span><div class="date">September 29, 2026</div><div class="lbl">Author notification</div></div>
+        <div class="tl"><span class="node"></span><div class="date">November 2026</div><div class="lbl">Camera-ready &amp; final posters</div></div>
+        <div class="tl key"><span class="node"></span><div class="date">December 12–13, 2026</div><div class="lbl">Workshop day · Sydney</div></div>
+      </div>
+      <div class="dates-note">
+        <h3>Submissions at a glance</h3>
+        <p>We welcome extended abstracts and short papers across all workshop topics. Accepted work is non-archival, and submissions are managed on OpenReview. Full instructions arrive with the call for papers.</p>
+        <div>
+          <span class="chip">Extended abstract · up to 4 pages</span>
+          <span class="chip">Short paper · 2 pages</span>
+          <span class="chip">Non-archival</span>
+          <span class="chip">OpenReview</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section id="schedule">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Program</span>
+      <h2>Schedule</h2>
+      <p>A single-track, one-day program balancing invited talks, contributed content, and structured discussion.</p>
+    </div>
+    <div class="sched">
+      <div class="slot"><div class="time">08:30</div><div><h4>Opening remarks</h4></div></div>
+      <div class="slot"><div class="time">09:00</div><div><h4>Invited talks I <a class="tag invited" href="#speakers">Invited</a></h4><p>Generative and video world models.</p></div></div>
+      <div class="slot"><div class="time">10:30</div><div><h4>Coffee &amp; poster session I <span class="tag break">Break</span></h4></div></div>
+      <div class="slot"><div class="time">11:00</div><div><h4>AV Causal Reasoning Retrieval Challenge <a class="tag challenge" href="#challenge">Challenge</a></h4><p>Task, results, and winners.</p></div></div>
+      <div class="slot"><div class="time">11:30</div><div><h4>Open debate <a class="tag discuss" href="#questions">Debate</a></h4><p>"Pixels vs. latents" — generative simulators vs. physics engines.</p></div></div>
+      <div class="slot"><div class="time">12:00</div><div><h4>Lunch &amp; poster sessions <span class="tag break">Break</span></h4></div></div>
+      <div class="slot"><div class="time">13:30</div><div><h4>Invited talks II <a class="tag invited" href="#speakers">Invited</a></h4><p>World models for action and robotics.</p></div></div>
+      <div class="slot"><div class="time">15:00</div><div><h4>Panel <a class="tag discuss" href="#questions">Panel</a></h4><p>"How should we evaluate world models for physical AI?"</p></div></div>
+      <div class="slot"><div class="time">15:45</div><div><h4>Coffee &amp; poster session II <span class="tag break">Break</span></h4></div></div>
+      <div class="slot"><div class="time">16:15</div><div><h4>Contributed spotlight talks &amp; best-paper announcement <a class="tag papers" href="#cfp">Spotlights</a></h4></div></div>
+      <div class="slot"><div class="time">17:15</div><div><h4>Closing remarks</h4></div></div>
+    </div>
+    <p class="sched-note">Tentative schedule — talk titles and speaker assignments will be published before the workshop.</p>
+  </div>
+</section>
+
+<!-- ============ AV CHALLENGE BAND ============ -->
+<section class="band" id="challenge">
+  <div class="glow"></div>
+  <div class="wrap band-inner">
+    <div>
+      <span class="eyebrow on-dark">Co-located challenge</span>
+      <h2 style="margin-top:14px">AV Causal Reasoning Retrieval Challenge</h2>
+      <p>A challenge on causal reasoning and retrieval for autonomous driving, run alongside the workshop. Task, data, baselines, and all challenge-specific announcements are posted on the challenge page. Winners will be announced during the workshop.</p>
+      <a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:26px">Visit the challenge page
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPEAKERS ============ -->
+<section id="speakers">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Invited speakers</span>
+      <h2>Confirmed speakers</h2>
+    </div>
+    <div class="people">
+      <div class="person">
+        <img class="avatar" src="photos/mengyue_yang.jpg" alt="Mengyue Yang" loading="lazy" referrerpolicy="no-referrer" data-remote="https://ymy4323460.github.io/assets/img/IMG_1201.JPG" data-initials="MY" onerror="avFallback(this)">
+        <a class="nm" href="https://ymy4323460.github.io/" target="_blank" rel="noopener">Mengyue Yang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Assistant Professor,<br>University of Bristol</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/katerina_fragkiadaki.jpg" alt="Katerina Fragkiadaki" loading="lazy" referrerpolicy="no-referrer" data-remote="https://www.cs.cmu.edu/~katef/images/KaterinaFragkiadaki.png" data-initials="KF" onerror="avFallback(this)">
+        <a class="nm" href="https://www.cs.cmu.edu/~katef/" target="_blank" rel="noopener">Katerina Fragkiadaki <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Associate Professor,<br>Carnegie Mellon University</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/jan_eric_lenssen.jpg" alt="Jan Eric Lenssen" loading="lazy" referrerpolicy="no-referrer" data-remote="https://janericlenssen.github.io/figures/photo4.jpg" data-initials="JL" onerror="avFallback(this)">
+        <a class="nm" href="https://janericlenssen.github.io/" target="_blank" rel="noopener">Jan Eric Lenssen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Senior Researcher,<br>MPI for Informatics</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/max_jiang.jpg" alt="Max Jiang" loading="lazy" referrerpolicy="no-referrer" data-initials="MJ" onerror="avFallback(this)">
+        <a class="nm" href="https://maxjiang.ml/" target="_blank" rel="noopener">Max Jiang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Staff Research Scientist,<br>Waymo</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/danijar_hafner.jpg" alt="Danijar Hafner" loading="lazy" referrerpolicy="no-referrer" data-remote="https://danijar.com/asset/face.jpg" data-initials="DH" onerror="avFallback(this)">
+        <a class="nm" href="https://danijar.com/" target="_blank" rel="noopener">Danijar Hafner <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Staff Research Scientist,<br>Google DeepMind</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORGANIZERS ============ -->
+<section id="organizers" style="background:var(--light2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Committee</span>
+      <h2>Organizers</h2>
+    </div>
+    <div class="people orgs">
+      <div class="person">
+        <img class="avatar" src="photos/jenny_schmalfuss.jpg" alt="Jenny Schmalfuss" loading="lazy" referrerpolicy="no-referrer" data-remote="https://www.vis.uni-stuttgart.de/img/staff/schmalfuss_Jenny.png" data-initials="JS" onerror="avFallback(this)">
+        <span class="nm">Jenny Schmalfuss</span>
+        <div class="af">Research Scientist, NVIDIA</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/german_ros.jpg" alt="German Ros" loading="lazy" referrerpolicy="no-referrer" data-remote="https://germanros.net/images/profile.jpg" data-initials="GR" onerror="avFallback(this)">
+        <a class="nm" href="https://germanros.net/" target="_blank" rel="noopener">German Ros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Principal Scientist, NVIDIA</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/despoina_paschalidou.jpg" alt="Despoina Paschalidou" loading="lazy" referrerpolicy="no-referrer" data-remote="https://paschalidoud.github.io/figures/me-small.jpg" data-initials="DP" onerror="avFallback(this)">
+        <a class="nm" href="https://paschalidoud.github.io/" target="_blank" rel="noopener">Despoina Paschalidou <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Research Scientist, NVIDIA</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/roberto_martin_martin.jpg" alt="Roberto Martín-Martín" loading="lazy" referrerpolicy="no-referrer" data-remote="https://robertomartinmartin.com/wp-content/uploads/2023/04/light_rmm.jpg" data-initials="RM" onerror="avFallback(this)">
+        <a class="nm" href="https://robertomartinmartin.com/" target="_blank" rel="noopener">Roberto Martín-Martín <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Assistant Professor,<br>UT Austin</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/jose_alvarez.jpg" alt="Jose M. Alvarez" loading="lazy" referrerpolicy="no-referrer" data-remote="https://static.sinfo.org/deck2/sinfo-33/speakers/public/69161ee37fef9d13bee61991" data-initials="JA" onerror="avFallback(this)">
+        <a class="nm" href="https://alvarezlopezjosem.github.io/" target="_blank" rel="noopener">Jose M. Alvarez <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Director of Research, NVIDIA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="mark"><svg viewBox="0 0 32 32"><path d="M4 20c4-6 8 6 12 0s8-6 12 0" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="11" r="2" fill="#8b83f0"/></svg></span>
+          World Models in Physical AI
+        </div>
+        <p>A one-day NeurIPS 2026 workshop on learned models of physical-world dynamics for embodied AI.<br>December 12–13, 2026 · Sydney, Australia.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <p><a href="#about">About</a><br><a href="#topics">Topics</a><br><a href="#schedule">Schedule</a><br><a href="#speakers">Speakers</a><br><a href="#cfp">Call for papers</a></p>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <p><span>Contact — coming soon</span><br><span>Slack / Discord — link coming soon</span><br><span>OpenReview — coming soon</span></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 World Models in Physical AI Workshop.</span>
+      <span class="pills">Non-archival<span>NeurIPS 2026</span><span>Sydney</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function avFallback(img){
+    var r=img.getAttribute('data-remote');
+    if(r){ img.removeAttribute('data-remote'); img.src=r; return; }
+    var d=document.createElement('div');
+    d.className='avatar-fallback';
+    d.textContent=img.getAttribute('data-initials')||'';
+    d.setAttribute('role','img');
+    d.setAttribute('aria-label',img.alt);
+    if(img.parentNode) img.parentNode.replaceChild(d,img);
+  }
+  // Close mobile menu on link tap
+  document.querySelectorAll('#nav a').forEach(function(a){
+    a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open');});
+  });
+  // Active-section highlight
+  var links=[].slice.call(document.querySelectorAll('#nav a[href^="#"]'));
+  var map={};links.forEach(function(l){var id=l.getAttribute('href').slice(1);if(id)map[id]=l;});
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var l=map[e.target.id];if(!l)return;
+        if(e.isIntersecting){links.forEach(function(x){x.style.color='';});if(!l.classList.contains('cta'))l.style.color='#fff';}
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    ['about','topics','dates','schedule','speakers','organizers'].forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+  }
+</script>
+</body>
+</html>
