@@ -47,7 +47,7 @@ A few details were pulled from public sources and are worth confirming:
 - **Danijar Hafner — affiliation.** Shown as *Google DeepMind* (matches his homepage). There was a mid-2026 report suggesting a possible move; confirm before publishing.
 - **Despoina Paschalidou** is listed on her page as *Senior* Research Scientist (site shows "Research Scientist" per the proposal — bump if you like).
 - **Jose M. Alvarez photo** comes from a conference page and may not load; if so, the initials monogram shows automatically. Drop in a preferred headshot when handy.
-- **Jenny Schmalfuss photo** is the University of Stuttgart staff photo; the contact email is omitted for now (add once a functional address is ready). Swap in an NVIDIA headshot/profile link if you have one.
+- **Jenny Schmalfuss photo** is the University of Stuttgart staff photo. Swap in an NVIDIA headshot/profile link if you have one.
 - **Workshop date** shows *December 12–13, 2026*; set the exact single day once confirmed.
 
 ## Design
