@@ -48,7 +48,7 @@ A few details were pulled from public sources and are worth confirming:
 - **Despoina Paschalidou** is listed on her page as *Senior* Research Scientist (site shows "Research Scientist" per the proposal — bump if you like).
 - **Jose M. Alvarez photo** comes from a conference page and may not load; if so, the initials monogram shows automatically. Drop in a preferred headshot when handy.
 - **Jenny Schmalfuss photo** is the University of Stuttgart staff photo. Swap in an NVIDIA headshot/profile link if you have one.
-- **Workshop date** shows *December 12–13, 2026*; set the exact single day once confirmed.
+- **Workshop date** shows *December 11–12, 2026*; set the exact single day once confirmed.
 
 ## Design
 Editorial / frontier direction: near-black hero with a subtle vector-field backdrop and electric-cyan + violet accents, light content sections below, `Space Grotesk` display type over `Inter` body. Fully responsive with a mobile menu.
