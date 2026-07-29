@@ -20,9 +20,9 @@ python3 -m http.server 8000
 The included `.nojekyll` file tells GitHub Pages to serve the files as-is (no Jekyll processing).
 
 ## How to update content
-Everything lives in `index.html`, organized by clearly labelled `<!-- SECTION -->` comments.
+The site is two static pages: `index.html` (the main page) and `cfp.html` (the full call for papers). Both share the same inline CSS/design system and are organized by clearly labelled `<!-- SECTION -->` comments.
 
-- **Call for papers** — search for `id="cfp"`. A ready-to-fill template (confirmed submission frame + suggested structure) is in the HTML comment right above that section. Replace the `.placeholder` block when the CFP is ready.
+- **Call for papers** — the full text lives in `cfp.html`. The main page shows a short summary + a "Read the full call for papers" button in the `id="cfp"` section of `index.html`. Keep the summary (page limit, deadlines, non-archival/OpenReview) in sync with `cfp.html`.
 - **Important dates** — search for `id="dates"`. Edit the `.tl` timeline rows; add `key` to a row's class to highlight it (cyan node).
 - **Schedule** — search for `id="schedule"`. Edit `.slot` rows; the small colored `.tag` labels are Invited / Debate / Panel / Challenge / Break.
 - **Speakers / Organizers** — search for `id="speakers"` / `id="organizers"`. Each person is one `.person` block.
@@ -48,7 +48,8 @@ A few details were pulled from public sources and are worth confirming:
 - **Despoina Paschalidou** is listed on her page as *Senior* Research Scientist (site shows "Research Scientist" per the proposal — bump if you like).
 - **Jose M. Alvarez photo** comes from a conference page and may not load; if so, the initials monogram shows automatically. Drop in a preferred headshot when handy.
 - **Jenny Schmalfuss photo** is the University of Stuttgart staff photo. Swap in an NVIDIA headshot/profile link if you have one.
-- **Workshop date** shows *December 11–12, 2026*; set the exact single day once confirmed.
+- **Workshop date** shows *December 12 or 13, 2026*; set the exact single day once NeurIPS confirms the workshop schedule.
+- **OpenReview link** — the "Submit on OpenReview" button in `cfp.html` currently points to `https://openreview.net/`. Replace with the workshop's submission portal URL once it is created.
 
 ## Design
 Editorial / frontier direction: near-black hero with a subtle vector-field backdrop and electric-cyan + violet accents, light content sections below, `Space Grotesk` display type over `Inter` body. Fully responsive with a mobile menu.

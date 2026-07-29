@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Call for Papers — World Models in Physical AI · NeurIPS 2026</title>
+<meta name="description" content="Call for Papers for the World Models in Physical AI Workshop at NeurIPS 2026. Submit learned models of physical-world dynamics for Physical AI. Deadline August 29, 2026. Sydney, Australia.">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:title" content="Call for Papers — World Models in Physical AI · NeurIPS 2026">
+<meta property="og:description" content="Submissions on learned models of physical-world dynamics for Physical AI. Up to 8 pages, non-archival, OpenReview. Deadline August 29, 2026.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0f'/%3E%3Cpath d='M4 20c4-6 8 6 12 0s8-6 12 0' fill='none' stroke='%2322d3ee' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='23' cy='11' r='2' fill='%237f77dd'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f; --bg2:#0f1016; --panel:#12141c;
+    --cyan:#22d3ee; --violet:#8b83f0; --grad:linear-gradient(90deg,#22d3ee,#8b83f0);
+    --ink:#0b0b12; --body:#3f4450; --muted:#6b7180;
+    --light:#ffffff; --light2:#f5f6f9; --line:#e7e9ee;
+    --ondark:#e9ebf2; --ondark-mut:#9aa1b4; --line-dark:rgba(255,255,255,.12);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--body);background:var(--light);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;color:var(--ink);line-height:1.12;font-weight:600;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#0e8ba3}
+  .eyebrow.on-dark{color:var(--cyan)}
+
+  /* NAV */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,15,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-dark)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--ondark);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.98rem;letter-spacing:-.01em}
+  .brand .mark{width:30px;height:30px;border-radius:8px;background:var(--bg2);border:1px solid var(--line-dark);display:grid;place-items:center;flex:none}
+  .brand .mark svg{width:20px;height:20px}
+  .navlinks{display:flex;align-items:center;gap:6px}
+  .navlinks a{color:var(--ondark-mut);font-size:.9rem;font-weight:500;padding:8px 12px;border-radius:8px;transition:.18s}
+  .navlinks a:hover{color:var(--light);background:rgba(255,255,255,.06)}
+  .navlinks a.cta{color:#06131a;background:var(--cyan);font-weight:600;margin-left:6px}
+  .navlinks a.cta:hover{background:#5ee0f2;color:#06131a}
+  .burger{display:none;background:none;border:1px solid var(--line-dark);border-radius:8px;width:40px;height:38px;color:var(--ondark);cursor:pointer;align-items:center;justify-content:center}
+  .burger svg{width:22px;height:22px}
+
+  /* HERO (compact) */
+  .hero{position:relative;background:var(--bg);color:var(--ondark);overflow:hidden;padding:132px 0 64px}
+  .hero .glow{position:absolute;top:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.14),transparent 62%);pointer-events:none}
+  .hero .glow.v{top:auto;bottom:-220px;left:-160px;right:auto;background:radial-gradient(circle,rgba(139,131,240,.13),transparent 62%)}
+  .hero-inner{position:relative;z-index:2;max-width:820px}
+  .hero h1{color:var(--light);font-size:clamp(2.2rem,5.2vw,3.6rem);font-weight:700;line-height:1.04;letter-spacing:-.025em;margin:18px 0 0}
+  .hero h1 .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero .lede{margin-top:22px;font-size:clamp(1.02rem,1.8vw,1.2rem);color:var(--ondark);max-width:680px;line-height:1.5}
+  .hero .meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 26px;color:var(--ondark-mut);font-size:.98rem}
+  .hero .meta b{color:var(--ondark);font-weight:600}
+  .hero .meta .dot{color:var(--cyan);font-size:.7em;vertical-align:middle}
+  .btns{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:11px;font-weight:600;font-size:.98rem;cursor:pointer;transition:.2s;border:1px solid transparent}
+  .btn-primary{background:var(--grad);color:#05131a}
+  .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn-ghost{border-color:var(--line-dark);color:var(--ondark)}
+  .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3)}
+  .btn svg{width:18px;height:18px}
+
+  /* CONTENT */
+  .doc{padding:76px 0 96px}
+  .doc-grid{display:grid;grid-template-columns:230px 1fr;gap:56px;align-items:start}
+  .toc{position:sticky;top:92px;font-size:.92rem}
+  .toc .toc-h{font-family:'Space Grotesk',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .toc a{display:block;color:var(--muted);padding:6px 0;border-left:2px solid var(--line);padding-left:14px;transition:.15s;line-height:1.35}
+  .toc a:hover{color:var(--ink);border-color:var(--cyan)}
+  .prose{max-width:760px}
+  .prose h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin:52px 0 6px;scroll-margin-top:88px}
+  .prose h2:first-of-type{margin-top:0}
+  .prose h3{font-size:1.08rem;margin:26px 0 4px;color:var(--ink)}
+  .prose p{font-size:1.05rem;margin-top:14px;color:var(--body)}
+  .prose ul{margin:14px 0 0;padding-left:22px}
+  .prose li{font-size:1.05rem;margin-top:9px;color:var(--body)}
+  .prose a.link{color:#0e8ba3;font-weight:500;border-bottom:1px solid rgba(14,139,163,.3)}
+  .prose a.link:hover{border-color:#0e8ba3}
+  .lead{font-size:1.14rem!important;color:var(--muted)!important}
+  .rule{height:1px;background:var(--line);border:0;margin:0}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;color:#0e6f83;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.28);padding:7px 13px;border-radius:9px}
+
+  .callout{border:1px solid var(--line);border-left:3px solid var(--cyan);background:var(--light2);border-radius:0 14px 14px 0;padding:20px 24px;margin-top:22px}
+  .callout p{margin-top:8px}
+  .callout p:first-child{margin-top:0}
+
+  table.dates{width:100%;border-collapse:collapse;margin-top:22px;font-size:1rem}
+  table.dates th,table.dates td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line)}
+  table.dates thead th{font-family:'Space Grotesk',sans-serif;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--line)}
+  table.dates td.d{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--ink);white-space:nowrap}
+  table.dates tr.key td{background:rgba(34,211,238,.06)}
+  table.dates tr.key td.d{color:#0b0b12}
+
+  .backline{margin-top:64px;padding-top:26px;border-top:1px solid var(--line);font-size:.98rem}
+  .backline a{color:#0e8ba3;font-weight:500}
+
+  /* FOOTER */
+  footer{background:var(--bg);color:var(--ondark-mut);padding:56px 0 40px;border-top:1px solid var(--line-dark)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line-dark)}
+  .foot-grid h4{color:#fff;font-size:1rem;margin-bottom:14px}
+  .foot-grid p,.foot-grid a{font-size:.94rem;color:var(--ondark-mut);line-height:1.7}
+  .foot-grid a:hover{color:var(--cyan)}
+  .foot-brand{color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.1rem;display:flex;align-items:center;gap:11px;margin-bottom:14px}
+  .foot-brand .mark{width:32px;height:32px;border-radius:9px;background:var(--bg2);border:1px solid var(--line-dark);display:grid;place-items:center}
+  .foot-brand .mark svg{width:21px;height:21px}
+  .foot-bottom{padding-top:26px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:.86rem;color:#6a7183}
+  .foot-bottom .pills span{color:var(--ondark-mut);border:1px solid var(--line-dark);padding:4px 11px;border-radius:20px;margin-left:8px}
+
+  @media(max-width:920px){
+    .doc-grid{grid-template-columns:1fr;gap:0}
+    .toc{display:none}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:640px){
+    .navlinks{position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;background:rgba(10,10,15,.97);backdrop-filter:blur(12px);padding:12px 16px 18px;border-bottom:1px solid var(--line-dark);display:none}
+    .navlinks.open{display:flex}
+    .navlinks a{padding:12px 14px}
+    .navlinks a.cta{margin-left:0;text-align:center;margin-top:6px}
+    .burger{display:flex}
+    .foot-grid{grid-template-columns:1fr}
+    table.dates th,table.dates td{padding:12px 10px;font-size:.92rem}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html#top" class="brand">
+      <span class="mark"><svg viewBox="0 0 32 32"><path d="M4 20c4-6 8 6 12 0s8-6 12 0" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="11" r="2" fill="#8b83f0"/></svg></span>
+      World Models in Physical AI
+    </a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('nav').classList.toggle('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="navlinks" id="nav">
+      <a href="index.html#about">About</a>
+      <a href="index.html#topics">Topics</a>
+      <a href="index.html#dates">Dates</a>
+      <a href="index.html#schedule">Schedule</a>
+      <a href="index.html#speakers">Speakers</a>
+      <a href="index.html#organizers">Organizers</a>
+      <a href="cfp.html" class="cta">Call for papers</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="glow"></div><div class="glow v"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow on-dark">NeurIPS 2026 Workshop · Sydney</span>
+    <h1>Call for <span class="accent">Papers</span></h1>
+    <p class="lede">The World Models in Physical AI Workshop at NeurIPS 2026 invites submissions on learned models of physical-world dynamics for Physical AI.</p>
+    <div class="meta">
+      <span><span class="dot">●</span> Submission deadline <b>August 29, 2026</b> (AoE)</span>
+      <span><span class="dot">●</span> <b>December 12 or 13, 2026</b> · Sydney, Australia</span>
+    </div>
+    <div class="btns">
+      <a href="https://openreview.net/" target="_blank" rel="noopener" class="btn btn-primary">Submit on OpenReview
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a href="https://media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip" class="btn btn-ghost">NeurIPS 2026 template</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOCUMENT ============ -->
+<section class="doc">
+  <div class="wrap doc-grid">
+
+    <!-- TOC -->
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-h">On this page</div>
+      <a href="#overview">Overview</a>
+      <a href="#topics">Topics of interest</a>
+      <a href="#format">Submission format</a>
+      <a href="#agents">Agents &amp; LLMs</a>
+      <a href="#policy">Review &amp; publication</a>
+      <a href="#presentation">Presentation</a>
+      <a href="#dates">Important dates</a>
+      <a href="#inclusion">Inclusion</a>
+    </aside>
+
+    <!-- PROSE -->
+    <article class="prose">
+
+      <h2 id="overview">Overview</h2>
+      <p class="lead">The <strong>World Models in Physical AI Workshop</strong> at <strong>NeurIPS 2026</strong> invites submissions on learned models of physical-world dynamics for Physical AI.</p>
+      <p>World models predict how an environment evolves, optionally conditioned on an agent's actions, and can be rolled out to imagine future observations and outcomes. For Physical AI systems — including robots, autonomous vehicles, and other agents that perceive and act in the physical world — this capability is central: an agent that can simulate its world can plan, learn from imagined experience, and address situations not represented in its training data.</p>
+      <p>The workshop will bring together researchers from generative modeling, reinforcement learning, robotics, computer vision, autonomous driving, and simulation to discuss how world models can become actionable, physically grounded, reliable, and deployable.</p>
+      <div class="chips">
+        <span class="chip">Up to 8 pages (excl. references)</span>
+        <span class="chip">NeurIPS 2026 template</span>
+        <span class="chip">Non-archival</span>
+        <span class="chip">OpenReview</span>
+      </div>
+
+      <h2 id="topics">Topics of Interest</h2>
+      <p>We welcome submissions on all aspects of world models for Physical AI. The topics below are illustrative rather than exhaustive; submissions are not required to fit neatly within any one theme.</p>
+
+      <h3>Representations and Architectures</h3>
+      <p>Latent versus pixel or video models, JEPA-style embeddings, identifiable latent representations, omnimodal models, 3D dynamics, contact dynamics.</p>
+
+      <h3>World Models for Action</h3>
+      <p>Model-based reinforcement learning, planning and control, learning in imagination, forward and inverse dynamics, world-action models, action-conditioned prediction.</p>
+
+      <h3>Generative Simulation</h3>
+      <p>World models as data generators, interactive and closed-loop simulation for robotics and autonomous driving, sim-to-real, real-to-sim, generative simulators and digital twins.</p>
+
+      <h3>Evaluation</h3>
+      <p>Physical correctness, causal faithfulness, downstream control utility, policy-ranking preservation, robustness, generalization, benchmarks and evaluation protocols.</p>
+
+      <h3>Scaling and Foundation World Models</h3>
+      <p>Data and compute scaling, large pretrained world models, multimodal data, transfer across embodiments, action spaces and domains.</p>
+
+      <h3>Safety, Reliability and Broader Impact</h3>
+      <p>Uncertainty, controllability, long-horizon consistency, failure analysis, safe deployment and the broader impact of world models that drive physical systems.</p>
+
+      <p>We particularly encourage work that addresses open questions at the intersection of these themes, including pixels versus latents, controllability over long horizons, sim-to-real and real-to-sim transfer, and the scaling behavior of world models for Physical AI. We also welcome relevant interdisciplinary work and research directions not explicitly represented in this list.</p>
+
+      <h2 id="format">Submission Format</h2>
+      <p>Papers may be up to <strong>8 pages</strong>, excluding references. All submissions must use the <a class="link" href="https://media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip">NeurIPS 2026 paper template</a>.</p>
+      <p>Submissions will be managed through <strong>OpenReview</strong>. The submission portal will be announced when available.</p>
+
+      <h2 id="agents">Use of Agents and Large Language Models</h2>
+      <p>This workshop follows the <a class="link" href="https://neurips.cc/Conferences/2026/MainTrackHandbook" target="_blank" rel="noopener">NeurIPS 2026 Main Track Handbook</a> and the <a class="link" href="https://neurips.cc/Conferences/2026/WorkshopsGuidance" target="_blank" rel="noopener">NeurIPS 2026 Workshops Guidance</a>.</p>
+      <p>Authors may use tools to assist in preparing a submission, but they remain fully responsible for the entire content of the paper and must ensure that all text, figures, references, claims and results are correct, original and scientifically responsible. Routine spell checking, grammar suggestions, editing assistance and basic code assistance do not need to be documented. If agents or LLMs are an important, original or non-standard component of the research method, their use must be described in the experimental setup or an equivalent section. Agents and LLMs may not be listed as authors. Prompt injections and other attempts to manipulate the reviewing process are strictly prohibited.</p>
+      <p>In addition to these conference-wide requirements, the workshop strongly discourages using LLMs or other automated systems to generate a submission's scientific contribution — including its core ideas, claims, methods, experiments, analysis, figures or references — without substantive, author-led intellectual engagement and careful verification.</p>
+      <div class="callout">
+        <p>Submissions that appear to have been substantially generated automatically, or that contain hallucinated citations, fabricated results, unverified claims or other indications of scientifically irresponsible tool use, may be investigated by the program committee. A confirmed material violation, or a failure to resolve such concerns, may result in <strong>desk rejection without full review</strong>.</p>
+      </div>
+      <p>Consistent with the NeurIPS workshop guidance, reviewers will not be permitted to use LLMs or agents when reviewing workshop submissions.</p>
+
+      <h2 id="policy">Review and Publication Policy</h2>
+      <ul>
+        <li>Each submission will be peer reviewed through OpenReview.</li>
+        <li>At least one author of every submission must agree to serve as a reviewer.</li>
+        <li>Work already published or presented at the NeurIPS 2026 main conference is not eligible for submission to the workshop.</li>
+        <li>Accepted submissions are <strong>non-archival</strong>, allowing authors to submit the work to an archival conference or journal in the future, subject to the policies of that venue.</li>
+        <li>Details concerning the public posting of accepted submissions on OpenReview and the workshop website will be announced before submissions open.</li>
+      </ul>
+      <p>Conflicts of interest will be managed using OpenReview's conflict-of-interest tools. Organizers will not review their own conflicted submissions or work from authors at their own organizations. People with a conflict of interest with an organizer, including their current students or postdoctoral researchers, may not submit.</p>
+
+      <h2 id="presentation">Presentation</h2>
+      <p>Accepted submissions will be presented during the one-day, in-person workshop in <strong>Sydney, Australia</strong>. All accepted papers will be invited to the poster session, and selected papers will also be invited for contributed spotlight talks.</p>
+      <p>The workshop program will include invited talks, contributed presentations, poster sessions, a panel on evaluating world models for Physical AI, and a debate on pixels versus latent representations.</p>
+
+      <h2 id="dates">Important Dates</h2>
+      <p>All deadlines are <strong>Anywhere on Earth (AoE)</strong> unless otherwise stated.</p>
+      <table class="dates">
+        <thead>
+          <tr><th>Milestone</th><th>Date</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Call for papers released</td><td class="d">Late July 2026</td></tr>
+          <tr class="key"><td>Submission deadline</td><td class="d">August 29, 2026</td></tr>
+          <tr><td>Reviewing period</td><td class="d">August 30 – September 20, 2026</td></tr>
+          <tr class="key"><td>Author notification</td><td class="d">September 29, 2026</td></tr>
+          <tr><td>Camera-ready papers and final posters</td><td class="d">November 2026</td></tr>
+          <tr class="key"><td>Workshop</td><td class="d">December 12 or 13, 2026 · Sydney</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="inclusion">Inclusion</h2>
+      <p>We welcome participation from researchers across disciplines, sectors, career stages, geographic regions and backgrounds. We particularly encourage submissions and participation from groups and regions that have historically been underrepresented in machine learning, robotics and Physical AI.</p>
+
+      <div class="backline">
+        Questions about the workshop? Email <a href="mailto:info@worldmodels-physicalai.com">info@worldmodels-physicalai.com</a> &nbsp;·&nbsp; <a href="index.html#top">← Back to the workshop home</a>
+      </div>
+
+    </article>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="mark"><svg viewBox="0 0 32 32"><path d="M4 20c4-6 8 6 12 0s8-6 12 0" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="11" r="2" fill="#8b83f0"/></svg></span>
+          World Models in Physical AI
+        </div>
+        <p>A one-day NeurIPS 2026 workshop on learned models of physical-world dynamics for embodied AI.<br>December 12 or 13, 2026 · Sydney, Australia.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <p><a href="index.html#about">About</a><br><a href="index.html#topics">Topics</a><br><a href="index.html#schedule">Schedule</a><br><a href="index.html#speakers">Speakers</a><br><a href="cfp.html">Call for papers</a></p>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <p><a href="mailto:info@worldmodels-physicalai.com">Contact us</a><br><span>Slack / Discord — link coming soon</span><br><span>OpenReview — coming soon</span></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 World Models in Physical AI Workshop.</span>
+      <span class="pills">Non-archival<span>NeurIPS 2026</span><span>Sydney</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('#nav a').forEach(function(a){
+    a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open');});
+  });
+</script>
+</body>
+</html>
