@@ -72,6 +72,19 @@
   .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3)}
   .btn svg{width:18px;height:18px}
 
+  /* NEWS banner */
+  .news{position:relative;z-index:2;max-width:680px;margin-bottom:30px;padding:18px 20px 16px;border:1px solid rgba(34,211,238,.34);border-radius:16px;background:linear-gradient(180deg,rgba(34,211,238,.09),rgba(139,131,240,.05))}
+  .news-badge{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:13px}
+  .news-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 0 rgba(34,211,238,.6);animation:newspulse 2.2s infinite}
+  @keyframes newspulse{0%{box-shadow:0 0 0 0 rgba(34,211,238,.55)}70%{box-shadow:0 0 0 9px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+  .news-list{list-style:none;display:grid;gap:11px}
+  .news-list li{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;font-size:.98rem;color:var(--ondark);line-height:1.5}
+  .news-list li b{color:#fff;font-weight:600}
+  .news-tag{flex:none;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:6px;color:#06131a;background:var(--cyan)}
+  .news-tag.rev{background:var(--violet);color:#0b0b12}
+  .news-list a{color:var(--cyan);font-weight:600;border-bottom:1px solid rgba(34,211,238,.45)}
+  .news-list a:hover{color:#5ee0f2;border-color:#5ee0f2}
+
   /* TOPIC STRIP */
   .strip{background:var(--bg2);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:30px 0}
   .strip-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
@@ -251,6 +264,13 @@
         <circle cx="9.5" cy="18.5" r="0.1" fill="#22d3ee"/>
       </svg>
     </div>
+    <div class="news" role="region" aria-label="Workshop news">
+      <span class="news-badge"><span class="pulse" aria-hidden="true"></span> News</span>
+      <ul class="news-list">
+        <li><span class="news-tag">Deadline extended</span> The submission deadline is now <b>September 5, 2026</b> (AoE) — one week later than the original August 29. <a href="cfp.html">See the call for papers →</a></li>
+        <li><span class="news-tag rev">Call for reviewers</span> Want to help shape the program? <a href="mailto:info@worldmodels-physicalai.com?subject=Reviewer%20sign-up%20%E2%80%94%20World%20Models%20in%20Physical%20AI%20Workshop">Sign up to become a reviewer →</a></li>
+      </ul>
+    </div>
     <span class="eyebrow on-dark">NeurIPS 2026 Workshop · Sydney</span>
     <h1>World Models<br>in <span class="accent">Physical AI</span></h1>
     <p class="lede">Learned models that simulate, plan, and act in the real world — bringing together generative modeling, reinforcement learning, robotics, computer vision, autonomous driving, and simulation.</p>
@@ -344,7 +364,7 @@
         <div class="q-list" style="grid-template-columns:1fr">
           <div class="qitem" style="border-top:0;padding-top:0"><div class="num">1</div><div><h4>Up to 8 pages</h4><p>Excluding references, using the NeurIPS 2026 paper template.</p></div></div>
           <div class="qitem"><div class="num">2</div><div><h4>Non-archival, on OpenReview</h4><p>Authors may later submit to an archival venue. At least one author per submission must agree to review.</p></div></div>
-          <div class="qitem"><div class="num">3</div><div><h4>Submission deadline: August 29, 2026</h4><p>Author notification by September 29, 2026 (all deadlines AoE).</p></div></div>
+          <div class="qitem"><div class="num">3</div><div><h4>Submission deadline: September 5, 2026 <span style="font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#0e8f6f;background:rgba(16,143,111,.14);padding:2px 8px;border-radius:6px;vertical-align:middle">Extended</span></h4><p>Author notification by September 29, 2026 (all deadlines AoE).</p></div></div>
         </div>
         <div class="btns" style="margin-top:28px">
           <a href="cfp.html" class="btn btn-primary" style="color:#05131a">Read the full call for papers
@@ -380,8 +400,8 @@
     <div class="dates-wrap">
       <div class="timeline">
         <div class="tl"><span class="node"></span><div class="date">Late July 2026</div><div class="lbl">Call for papers released</div></div>
-        <div class="tl key"><span class="node"></span><div class="date">August 29, 2026</div><div class="lbl">Submission deadline</div></div>
-        <div class="tl"><span class="node"></span><div class="date">Aug 30 – Sept 20, 2026</div><div class="lbl">Reviewing period</div></div>
+        <div class="tl key"><span class="node"></span><div class="date">September 5, 2026 <span style="font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#0e8f6f;background:rgba(16,143,111,.14);padding:2px 8px;border-radius:6px;vertical-align:middle">Extended</span></div><div class="lbl">Submission deadline</div></div>
+        <div class="tl"><span class="node"></span><div class="date">Sept 6 – Sept 20, 2026</div><div class="lbl">Reviewing period</div></div>
         <div class="tl key"><span class="node"></span><div class="date">September 29, 2026</div><div class="lbl">Author notification</div></div>
         <div class="tl"><span class="node"></span><div class="date">November 2026</div><div class="lbl">Camera-ready &amp; final posters</div></div>
         <div class="tl key"><span class="node"></span><div class="date">December 12 or 13, 2026</div><div class="lbl">Workshop day · Sydney</div></div>

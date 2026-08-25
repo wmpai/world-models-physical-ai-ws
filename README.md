@@ -23,6 +23,7 @@ The included `.nojekyll` file tells GitHub Pages to serve the files as-is (no Je
 The site is two static pages: `index.html` (the main page) and `cfp.html` (the full call for papers). Both share the same inline CSS/design system and are organized by clearly labelled `<!-- SECTION -->` comments.
 
 - **Call for papers** — the full text lives in `cfp.html`. The main page shows a short summary + a "Read the full call for papers" button in the `id="cfp"` section of `index.html`. Keep the summary (page limit, deadlines, non-archival/OpenReview) in sync with `cfp.html`.
+- **News banner** — the highlighted `.news` block at the top of the hero in `index.html`. Add/remove `<li>` items in `.news-list`; the small `.news-tag` label colors each item (cyan by default, violet with the `rev` class). The "Sign up to become a reviewer" link currently points to a `mailto:` interim — replace its `href` with the reviewer sign-up form URL once it exists.
 - **Important dates** — search for `id="dates"`. Edit the `.tl` timeline rows; add `key` to a row's class to highlight it (cyan node).
 - **Schedule** — search for `id="schedule"`. Edit `.slot` rows; the small colored `.tag` labels are Invited / Debate / Panel / Challenge / Break.
 - **Speakers / Organizers** — search for `id="speakers"` / `id="organizers"`. Each person is one `.person` block.
