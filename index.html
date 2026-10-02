@@ -84,6 +84,13 @@
   .news-tag.rev{background:var(--violet);color:#0b0b12}
   .news-list a{color:var(--cyan);font-weight:600;border-bottom:1px solid rgba(34,211,238,.45)}
   .news-list a:hover{color:#5ee0f2;border-color:#5ee0f2}
+  .news-list .challenge-news{display:block;padding-bottom:16px;margin-bottom:5px;border-bottom:1px solid var(--line-dark)}
+  .challenge-news h2{font-size:clamp(1.25rem,3vw,1.65rem);line-height:1.25;margin:12px 0 8px}
+  .challenge-news h2 a{border-bottom:0}
+  .challenge-news p{margin-bottom:10px}
+  a.challenge-url{color:var(--cyan);font-weight:600;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere;border-bottom:0}
+  a.challenge-url:hover{color:#5ee0f2}
+  .challenge-opening{color:var(--ondark)}
 
   /* TOPIC STRIP */
   .strip{background:var(--bg2);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:30px 0}
@@ -267,6 +274,12 @@
     <div class="news" role="region" aria-label="Workshop news">
       <span class="news-badge"><span class="pulse" aria-hidden="true"></span> News</span>
       <ul class="news-list">
+        <li class="challenge-news">
+          <span class="news-tag">Challenge · Opens October 5</span>
+          <h2><a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener">AV Causal Scenario Retrieval Challenge</a></h2>
+          <p>Opens for participation on <b><time datetime="2026-10-05">October 5, 2026</time></b>.</p>
+          <a class="challenge-url" href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener">https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge</a>
+        </li>
         <li><span class="news-tag">Deadline extended</span> The submission deadline is now <b>September 5, 2026</b> (AoE) — one week later than the original August 29. <a href="cfp.html">See the call for papers →</a></li>
         <li><span class="news-tag rev">Call for reviewers</span> Want to help shape the program? <a href="reviewers.html">Sign up to become a reviewer →</a></li>
       </ul>
@@ -403,6 +416,7 @@
         <div class="tl key"><span class="node"></span><div class="date">September 5, 2026 <span style="font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#0e8f6f;background:rgba(16,143,111,.14);padding:2px 8px;border-radius:6px;vertical-align:middle">Extended</span></div><div class="lbl">Submission deadline</div></div>
         <div class="tl"><span class="node"></span><div class="date">Sept 6 – Sept 20, 2026</div><div class="lbl">Reviewing period</div></div>
         <div class="tl key"><span class="node"></span><div class="date">September 29, 2026</div><div class="lbl">Author notification</div></div>
+        <div class="tl key"><span class="node"></span><div class="date"><time datetime="2026-10-05">October 5, 2026</time></div><div class="lbl"><a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:600;text-decoration:underline;text-underline-offset:3px">AV Causal Scenario Retrieval Challenge</a> opens for participation</div></div>
         <div class="tl"><span class="node"></span><div class="date">November 2026</div><div class="lbl">Camera-ready &amp; final posters</div></div>
         <div class="tl key"><span class="node"></span><div class="date">December 12 or 13, 2026</div><div class="lbl">Workshop day · Sydney</div></div>
       </div>
@@ -432,7 +446,7 @@
       <div class="slot"><div class="time">08:30</div><div><h4>Opening remarks</h4></div></div>
       <div class="slot"><div class="time">09:00</div><div><h4>Invited talks I <a class="tag invited" href="#speakers">Invited</a></h4><p>Generative and video world models.</p></div></div>
       <div class="slot"><div class="time">10:30</div><div><h4>Coffee &amp; poster session I <span class="tag break">Break</span></h4></div></div>
-      <div class="slot"><div class="time">11:00</div><div><h4>AV Causal Reasoning Retrieval Challenge <a class="tag challenge" href="#challenge">Challenge</a></h4><p>Task, results, and winners.</p></div></div>
+      <div class="slot"><div class="time">11:00</div><div><h4>AV Causal Scenario Retrieval Challenge <a class="tag challenge" href="#challenge">Challenge</a></h4><p>Task, results, and winners.</p></div></div>
       <div class="slot"><div class="time">11:30</div><div><h4>Open debate <a class="tag discuss" href="#questions">Debate</a></h4><p>"Pixels vs. latents" — generative simulators vs. physics engines.</p></div></div>
       <div class="slot"><div class="time">12:00</div><div><h4>Lunch &amp; poster sessions <span class="tag break">Break</span></h4></div></div>
       <div class="slot"><div class="time">13:30</div><div><h4>Invited talks II <a class="tag invited" href="#speakers">Invited</a></h4><p>World models for action and robotics.</p></div></div>
@@ -451,8 +465,10 @@
   <div class="wrap band-inner">
     <div>
       <span class="eyebrow on-dark">Co-located challenge</span>
-      <h2 style="margin-top:14px">AV Causal Reasoning Retrieval Challenge</h2>
+      <h2 style="margin-top:14px">AV Causal Scenario Retrieval Challenge</h2>
+      <p><strong class="challenge-opening">Opens for participation on <time datetime="2026-10-05">October 5, 2026</time>.</strong></p>
       <p>A challenge on causal reasoning and retrieval for autonomous driving, run alongside the workshop. Task, data, baselines, and all challenge-specific announcements are posted on the challenge page. Winners will be announced during the workshop.</p>
+      <p><a class="challenge-url" href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener">https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge</a></p>
       <a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:26px">Visit the challenge page
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
