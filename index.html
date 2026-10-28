@@ -198,6 +198,16 @@
   .contact-line{margin-top:40px;text-align:center;font-size:.98rem;color:var(--muted)}
   .contact-line a{color:#0e8ba3;font-weight:500}
 
+  /* ACCEPTED PAPERS */
+  .accepted-paper-list{margin:0;padding-left:24px;list-style:disc;color:var(--ink)}
+  .accepted-paper-list li{padding-left:6px;margin-bottom:14px;line-height:1.6;overflow-wrap:anywhere}
+  .accepted-paper-list li:last-child{margin-bottom:0}
+  .accepted-paper-list li::marker{color:#0e8ba3}
+  .accepted-paper-list .paper-authors{display:block;margin-top:4px;font-size:.875rem;line-height:1.6;color:var(--body)}
+  .accepted-paper-list .arxiv-link{display:inline-block;margin-left:8px;color:#08758a;font-weight:500;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+  .accepted-paper-list .arxiv-link:hover{color:var(--ink)}
+  .accepted-paper-list .arxiv-link:focus-visible{outline:2px solid #08758a;outline-offset:3px;border-radius:2px}
+
   /* REVIEWER ACKNOWLEDGMENTS */
   .reviewer-list{list-style:none;columns:4;column-gap:32px;padding:0;margin:0}
   .reviewer-list li{break-inside:avoid;padding:0 0 12px;font-size:.95rem;line-height:1.5;color:var(--ink);overflow-wrap:anywhere}
@@ -244,6 +254,18 @@
     .sec-head{margin-bottom:32px}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  /* Keep the complete section navigation on one line when space permits. */
+  .nav-inner{max-width:var(--maxw);gap:16px}
+  .nav-inner .brand{flex-shrink:0}
+  .navlinks{gap:4px}
+  .navlinks a{font-size:.85rem;padding:8px;white-space:nowrap}
+  @media(max-width:1200px){
+    .navlinks{position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;background:rgba(10,10,15,.97);backdrop-filter:blur(12px);padding:12px 16px 18px;border-bottom:1px solid var(--line-dark);display:none;max-height:calc(100dvh - 64px);overflow-y:auto}
+    .navlinks.open{display:flex}
+    .navlinks a{padding:12px 14px}
+    .navlinks a.cta{margin-left:0;text-align:center;margin-top:6px}
+    .burger{display:flex;flex-shrink:0}
+  }
 </style>
 </head>
 <body>
@@ -261,9 +283,10 @@
     <nav class="navlinks" id="nav">
       <a href="#about">About</a>
       <a href="#topics">Topics</a>
-      <a href="#dates">Dates</a>
-      <a href="#schedule">Schedule</a>
       <a href="#speakers">Speakers</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#accepted-papers">Accepted papers</a>
+      <a href="#dates">Dates</a>
       <a href="#organizers">Organizers</a>
       <a href="#reviewer-thanks">Reviewers</a>
       <a href="#cfp" class="cta">Call for papers</a>
@@ -441,6 +464,75 @@
   </div>
 </section>
 
+<!-- ============ SCHEDULE ============ -->
+<section id="schedule">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Program</span>
+      <h2>Tentative schedule</h2>
+    </div>
+    <div class="sched">
+      <div class="slot"><div class="time">08:30</div><div><h4>Opening remarks</h4></div></div>
+      <div class="slot"><div class="time">09:00</div><div><h4>Invited talks I <a class="tag invited" href="#speakers">Invited</a></h4><p>Generative and video world models.</p></div></div>
+      <div class="slot"><div class="time">10:30</div><div><h4>Coffee &amp; poster session I <span class="tag break">Break</span></h4></div></div>
+      <div class="slot"><div class="time">11:00–11:40</div><div><h4>Challenge Results I <a class="tag challenge" href="#challenges">Challenge</a></h4><p>Results and winners · <a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">AV Causal Scenario Retrieval Challenge</a> · <a href="https://www.nuscenes.org/nureasoning" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">nuReasoning Challenge</a></p></div></div>
+      <div class="slot"><div class="time">11:40–12:20</div><div><h4>Debate: Pixels vs. latents <a class="tag discuss" href="#questions">Debate</a></h4><p>Should world models predict in observation space or in abstract latent space?</p></div></div>
+      <div class="slot"><div class="time">12:20</div><div><h4>Lunch &amp; poster sessions <span class="tag break">Break</span></h4></div></div>
+      <div class="slot"><div class="time">13:30</div><div><h4>Invited talks II <a class="tag invited" href="#speakers">Invited</a></h4><p>World models for action and robotics.</p></div></div>
+      <div class="slot"><div class="time">15:00</div><div><h4>Panel <a class="tag discuss" href="#questions">Panel</a></h4><p>"How should we evaluate world models for physical AI?"</p></div></div>
+      <div class="slot"><div class="time">15:45</div><div><h4>Coffee &amp; poster session II <span class="tag break">Break</span></h4></div></div>
+      <div class="slot"><div class="time">16:20–17:00</div><div><h4>Challenge Results II <a class="tag challenge" href="#challenges">Challenge</a></h4><p>Results and winners · <a href="https://huggingface.co/spaces/KIT-MRT/KITScenes-LongTail-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">KITScenes LongTail - World Modeling Challenge</a> · <a href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">AlpaSim Challenge 2026</a></p></div></div>
+      <div class="slot"><div class="time">17:00</div><div><h4>Closing remarks</h4></div></div>
+    </div>
+    <p class="sched-note">Tentative schedule — talk titles and speaker assignments will be published before the workshop.</p>
+  </div>
+</section>
+
+<!-- ============ ACCEPTED PAPERS ============ -->
+<section id="accepted-papers" style="background:var(--light2)" aria-labelledby="accepted-papers-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Workshop papers</span>
+      <h2 id="accepted-papers-title">Accepted papers</h2>
+    </div>
+    <ul class="accepted-paper-list">
+      <li>RoboCoach: World Models as Active Coaches for Compositional Robot Skills <a class="arxiv-link" href="https://arxiv.org/html/2609.39685v1" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Jiajun Liu, Yifan Chen, Yichao Liu, Jiayi Zhang, Ruoqu Chen, Shaoxuan Xie, Guocai Yao, Mengdi Xu, Sen Cui, Changshui Zhang</span></li>
+      <li>PhysWorldBench: Benchmarking Video Generators as Physical World Simulators<span class="paper-authors">Yugang Wang, Xutao Guo, Haixin Luo, Menghan Chen, Zhijie Deng, Junchi Yan</span></li>
+      <li>Understanding and Mitigating the Video-Action Generalization Gap via Temporal Ratio <a class="arxiv-link" href="https://arxiv.org/html/2607.08127" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Utkarsh Aashu Mishra, Yongxin Chen, Danfei Xu, Yang Liu, Xi Chen, Jiayuan Mao</span></li>
+      <li>FactoryBench: Evaluating Industrial Machine Understanding <a class="arxiv-link" href="https://arxiv.org/html/2605.07675v1" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Yanis Reyan Merzouki, Coral Izquierdo Muniz, Matei C. Ignuta-Ciuncanu, Marcos Gómez-Bracamonte, Riccardo Maggioni, Gian-Alessandro Lombardi, Camilla Mazzoleni, Federico Martelli, Balázs Günther, Jonas Petersen, Philipp Christian Petersen</span></li>
+      <li>LeVLWM: Text-Goal Control with a Single Vision-Language World Model<span class="paper-authors">Qiuyi Hua, Ahitagni Das, Vivek Boominathan, Randall Balestriero</span></li>
+      <li>Hydra-0: Action Flow for Generalist World Modeling and Control <a class="arxiv-link" href="https://arxiv.org/abs/2608.18077v1" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Hongyu Li, Bowen Wen, Xinghao Zhu, Yixuan Wang, Yilun Du, Yunzhu Li, George Konidaris, Stan Birchfield, Soha Pouya, Chenran Li, Yan Chang</span></li>
+      <li>Beyond Early Training, One-Step Prediction Fidelity Is an Unreliable Guide to Planning in JEPA World Models.<span class="paper-authors">Joshua Cheung, He Zhang</span></li>
+      <li>JEPA-TTT: Persistent Test-Time Training of Latent World Models for Planning under Dynamics Shifts <a class="arxiv-link" href="https://arxiv.org/abs/2610.00722" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Zheyuan Zhang, Suyu Ye, Nakul Agarwal, Hossein Nourkhiz Mahjoub, Ehsan Moradi Pari, Daniel Khashabi, Tianmin Shu, Vaishnav Tadiparthi</span></li>
+      <li>How Do Video Foundation Models Encode Intuitive Physics? Probing Across Pretraining Paradigms <a class="arxiv-link" href="https://arxiv.org/html/2606.09646v2" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Samuele Punzo, Niccolò Caselli, Ippokratis Pantelidis, Francesco Massafra, Salvatore Lo Sardo, Mohammadreza Salehi</span></li>
+      <li>When Does Latent Prediction Error Support Physical Surprise Claims in Video World Models?<span class="paper-authors">Anton Ivanov Hristov, Aleksandar Slavov, Vasil Vasilev</span></li>
+      <li>Risk Without Boxes: Task Grounding Elicits Hazard Localization in Driving-Video World Representations<span class="paper-authors">Roni Goldshmidt, Lorenzo Niccolini, Hamish Scott</span></li>
+      <li>Probing Physical Readability Under Temporal Straightening in Visual World Models<span class="paper-authors">Daniel Hacobian, Erin F. Lee, Utsav Sharma, Eeshan G Dandamudi, Mohammed Mahfoud, Anusha Mujumdar</span></li>
+      <li>World Models Need Not Be Right to Rank Policies Right: Relative Bounds and Audit Limits<span class="paper-authors">Ahanaf Hasan Ariq, Hasaan Ahmad</span></li>
+      <li>IDM-JEPA: Semi-Supervised Action Inference via Inverse Dynamics in Joint-Embedding Predictive Architectures<span class="paper-authors">Ludovic Perrier, Gaétan Marceau Caron</span></li>
+      <li>Wild-World: Spatially Grounded Action-Conditioned RGB-D-Semantic World Modeling for Field Robotics<span class="paper-authors">Zihang Wang, Yuhang Chu, Wenkai Zhu, shuyuan Li, Peizhou Ni, Dong Kong</span></li>
+      <li>World Models for Active Measurement: Revealing Static Hidden Worlds and Planning What to Measure Next<span class="paper-authors">Gerrit Olivier, Jack B Muir</span></li>
+      <li>Placing the Bottleneck: Spatial Latent Scene Representations for World Models<span class="paper-authors">Maciej Lewandowski, Michael Arthur Leopold Pearce, Tsun-Yi Yang, Thomas J. Cashman</span></li>
+      <li>Interpreting Physics in Video Encoders using Multi-Object Interaction Videos <a class="arxiv-link" href="https://arxiv.org/abs/2610.31983" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Ayushi Mehrotra, Sai Vidyaranya Nuthalapati</span></li>
+      <li>Real-to-Sim-to-Real Geometry-Aware Fall Trajectory Augmentation for Spatially Robust UWB Fall Detection<span class="paper-authors">Kamil Alp Çınar, Ahmet Gunes</span></li>
+      <li>SURVEYOR: Certified Speculative Plan Consumption for Latent World-Model Planning<span class="paper-authors">Hasaan Ahmad, Gaojie Jin, ZEYU FU, Lu Yin, Tianjin Huang</span></li>
+      <li>Position: World Models of Physical Sites Must Discover Their Own State<span class="paper-authors">Luc H. Leroy, Maximilien Leroy</span></li>
+      <li>Gated Transformer World Models for Model-Based Reinforcement Learning<span class="paper-authors">Zina Kamel, Tabitha Edith Lee, Glen Berseth, Hsiu-Chin Lin, David Meger</span></li>
+      <li>Can World Models Play the Piano? Benchmarking Physical Consistency in Audio-Visual Generation<span class="paper-authors">Amy Guan Wang, Haoyu Zhen, Jiaben Chen</span></li>
+      <li>Assessing the Gameability of Vision Language Model Judges for World Model Video Evaluation<span class="paper-authors">James Kim, Neil Porwal, Rahul Bellam, Joseph Le Nevez, Nicholas Babey, Vasu Sharma</span></li>
+      <li>Where Structure Enters a World Model: From Predictive Fit to Physical Rollout<span class="paper-authors">Panayiotis Christou, Satyapragnya Kar, Flavjo Xhelollari, Parijat Dube, Rajarshi Das</span></li>
+      <li>Closing the Train-Test Gap in World Models for Gradient-Based Planning <a class="arxiv-link" href="https://www.arxiv.org/abs/2512.09929" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Rohun Agrawal, Nimit Kalra, Arjun Parthasarathy, Yann LeCun, Oumayma Bounou, Pavel Izmailov, Micah Goldblum</span></li>
+      <li>Learning World Models with Joint-Embedding Prediction for Single- and Multi-Agent Reinforcement Learning<span class="paper-authors">Brandon Gary Kaplowitz, Osaze James Obahor, Christian Schroeder de Witt</span></li>
+      <li>Geometry Beyond Symmetry On-Manifold Equivariant Graph Networks for Robot Dynamics<span class="paper-authors">Minjong Kim, Eunseon Choi, Jiho Ryoo, Soohee Han</span></li>
+      <li>WOVEN: Weaving Visual World Modeling into Multimodal LLMs <a class="arxiv-link" href="https://arxiv.org/abs/2610.12417" target="_blank" rel="noopener noreferrer">[arXiv]</a><span class="paper-authors">Zheyu Fan, Yue Zhang, Mingkai Deng, Kangrui Wang, Qineng Wang, Canyu Chen, Jie Hao, Xing Fan, Chenlei Guo, Eric P. Xing, Mohit Bansal, Manling Li</span></li>
+      <li>Planning with View World Models<span class="paper-authors">Kangrui Wang, Linjie Li, Zhengyuan Yang, Shiqi Chen, Zihan Wang, Li Fei-Fei, Jiajun Wu, Leonidas Guibas, Lijuan Wang, Manling Li</span></li>
+      <li>Interpreting Ego-Motion in a Driving World Model<span class="paper-authors">Erlis Lushtaku, Arian Mousakhan, Johannes Dienert, Simon Schrodi, Silvio Galesso, Thomas Brox</span></li>
+      <li>Dream to Explore: Discovering Latent Dynamical Regimes with Sticky Nonparametric World Models<span class="paper-authors">Zahra Sheikhbahaee, Gopeshh Subbaraj, Adam Safron, Saurav Jha, Irina Rish, Sarath Chandar</span></li>
+      <li>Control-centric Representation Learning using Action-free Datasets with Distinct Policies<span class="paper-authors">Max Rudolph, Rohan Patel, Alexander Levine, Peter Stone, Amy Zhang</span></li>
+    </ul>
+  </div>
+</section>
+
 <!-- ============ CALL FOR PAPERS ============ -->
 <!-- Full call for papers lives on cfp.html. Keep this summary in sync with it. -->
 <section id="cfp">
@@ -509,30 +601,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ SCHEDULE ============ -->
-<section id="schedule">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Program</span>
-      <h2>Tentative schedule</h2>
-    </div>
-    <div class="sched">
-      <div class="slot"><div class="time">08:30</div><div><h4>Opening remarks</h4></div></div>
-      <div class="slot"><div class="time">09:00</div><div><h4>Invited talks I <a class="tag invited" href="#speakers">Invited</a></h4><p>Generative and video world models.</p></div></div>
-      <div class="slot"><div class="time">10:30</div><div><h4>Coffee &amp; poster session I <span class="tag break">Break</span></h4></div></div>
-      <div class="slot"><div class="time">11:00–11:40</div><div><h4>Challenge Results I <a class="tag challenge" href="#challenges">Challenge</a></h4><p>Results and winners · <a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">AV Causal Scenario Retrieval Challenge</a> · <a href="https://www.nuscenes.org/nureasoning" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">nuReasoning Challenge</a></p></div></div>
-      <div class="slot"><div class="time">11:40–12:20</div><div><h4>Debate: Pixels vs. latents <a class="tag discuss" href="#questions">Debate</a></h4><p>Should world models predict in observation space or in abstract latent space?</p></div></div>
-      <div class="slot"><div class="time">12:20</div><div><h4>Lunch &amp; poster sessions <span class="tag break">Break</span></h4></div></div>
-      <div class="slot"><div class="time">13:30</div><div><h4>Invited talks II <a class="tag invited" href="#speakers">Invited</a></h4><p>World models for action and robotics.</p></div></div>
-      <div class="slot"><div class="time">15:00</div><div><h4>Panel <a class="tag discuss" href="#questions">Panel</a></h4><p>"How should we evaluate world models for physical AI?"</p></div></div>
-      <div class="slot"><div class="time">15:45</div><div><h4>Coffee &amp; poster session II <span class="tag break">Break</span></h4></div></div>
-      <div class="slot"><div class="time">16:20–17:00</div><div><h4>Challenge Results II <a class="tag challenge" href="#challenges">Challenge</a></h4><p>Results and winners · <a href="https://huggingface.co/spaces/KIT-MRT/KITScenes-LongTail-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">KITScenes LongTail - World Modeling Challenge</a> · <a href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">AlpaSim Challenge 2026</a></p></div></div>
-      <div class="slot"><div class="time">17:00</div><div><h4>Closing remarks</h4></div></div>
-    </div>
-    <p class="sched-note">Tentative schedule — talk titles and speaker assignments will be published before the workshop.</p>
   </div>
 </section>
 
@@ -807,7 +875,7 @@
       </div>
       <div>
         <h4>Explore</h4>
-        <p><a href="#about">About</a><br><a href="#topics">Topics</a><br><a href="#schedule">Schedule</a><br><a href="#speakers">Speakers</a><br><a href="#cfp">Call for papers</a><br><a href="reviewers.html">Become a reviewer</a></p>
+        <p><a href="#about">About</a><br><a href="#topics">Topics</a><br><a href="#speakers">Speakers</a><br><a href="#schedule">Schedule</a><br><a href="#accepted-papers">Accepted papers</a><br><a href="#cfp">Call for papers</a><br><a href="#dates">Dates</a><br><a href="#organizers">Organizers</a><br><a href="#reviewer-thanks">Reviewers</a><br><a href="reviewers.html">Become a reviewer</a></p>
       </div>
       <div>
         <h4>Community</h4>
@@ -846,7 +914,7 @@
         if(e.isIntersecting){links.forEach(function(x){x.style.color='';});if(!l.classList.contains('cta'))l.style.color='#fff';}
       });
     },{rootMargin:'-45% 0px -50% 0px'});
-    ['about','topics','dates','schedule','speakers','organizers','reviewer-thanks'].forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+    ["about","topics","speakers","schedule","accepted-papers","cfp","dates","organizers","reviewer-thanks"].forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
   }
 </script>
 <script data-pplx-inline-edit>
