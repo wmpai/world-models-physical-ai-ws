@@ -50,7 +50,7 @@ A few details were pulled from public sources and are worth confirming:
 - **Despoina Paschalidou** is listed on her page as *Senior* Research Scientist (site shows "Research Scientist" per the proposal — bump if you like).
 - **Jose M. Alvarez photo** comes from a conference page and may not load; if so, the initials monogram shows automatically. Drop in a preferred headshot when handy.
 - **Jenny Schmalfuss photo** is the University of Stuttgart staff photo. Swap in an NVIDIA headshot/profile link if you have one.
-- **Workshop date** shows *December 12 or 13, 2026*; set the exact single day once NeurIPS confirms the workshop schedule.
+- **Workshop date** shows *December 11 or 12, 2026*; set the exact single day once NeurIPS confirms the workshop schedule.
 - **OpenReview link** — the "Submit on OpenReview" buttons (in `cfp.html`, the `index.html` CFP section, and the footer) point to the workshop's submission portal: `https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/WM_PAI`.
 
 ## Design

@@ -31,7 +31,7 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#0e8ba3}
   .eyebrow.on-dark{color:var(--cyan)}
-  section{padding:88px 0}
+  section{padding:48px 0 88px}
   .sec-head{max-width:760px;margin-bottom:44px}
   .sec-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin:14px 0 0}
   .sec-head p{margin-top:16px;font-size:1.06rem;color:var(--muted)}
@@ -51,16 +51,17 @@
   .burger svg{width:22px;height:22px}
 
   /* HERO */
-  .hero{position:relative;background:var(--bg);color:var(--ondark);overflow:hidden;padding:150px 0 96px}
-  .hero-inner .wavemark{position:absolute;left:-2px;bottom:-250px;width:100%;z-index:-1;pointer-events:none;opacity:1}
-  .hero-inner .wave-dots{position:absolute;left:-2px;bottom:-80px;width:100%;z-index:-1;pointer-events:none;opacity:.3}
+  .hero{position:relative;background:var(--bg);color:var(--ondark);overflow:hidden;padding:104px 0 40px}
+  .hero-inner .wavemark{position:absolute;left:-2px;bottom:-250px;width:100%;max-width:880px;z-index:-1;pointer-events:none;opacity:1}
+  .hero-inner .wave-dots{position:absolute;left:-2px;bottom:-80px;width:100%;max-width:880px;z-index:-1;pointer-events:none;opacity:.3}
   .hero-inner .wavemark svg,.hero-inner .wave-dots svg{width:100%;height:auto;display:block;overflow:visible}
   .hero .glow{position:absolute;top:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.14),transparent 62%);pointer-events:none}
   .hero .glow.v{top:auto;bottom:-220px;left:-160px;right:auto;background:radial-gradient(circle,rgba(139,131,240,.13),transparent 62%)}
-  .hero-inner{position:relative;z-index:2;max-width:880px}
-  .hero h1{color:var(--light);font-size:clamp(2.5rem,6.4vw,4.6rem);font-weight:700;line-height:1.02;letter-spacing:-.025em;margin:22px 0 0}
+  .hero-inner{position:relative;z-index:2}
+  .hero h1{color:var(--light);font-size:clamp(2rem,5.6vw,3.9rem);font-weight:700;line-height:1.05;letter-spacing:-.025em;margin:22px 0 0}
+  @media(min-width:720px){.hero h1{white-space:nowrap}}
   .hero h1 .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .hero .lede{margin-top:26px;font-size:clamp(1.05rem,2vw,1.32rem);color:var(--ondark);max-width:660px;line-height:1.5}
+  .hero .lede{margin-top:18px;font-size:clamp(1.05rem,2vw,1.32rem);color:var(--ondark);max-width:none;line-height:1.5}
   .hero .meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 26px;color:var(--ondark-mut);font-size:.98rem}
   .hero .meta b{color:var(--ondark);font-weight:600}
   .hero .meta .dot{color:var(--cyan);font-size:.7em;vertical-align:middle}
@@ -91,6 +92,19 @@
   a.challenge-link{color:var(--cyan);font-weight:600;text-decoration:underline;text-underline-offset:3px;border-bottom:0}
   a.challenge-link:hover{color:#5ee0f2}
   .challenge-opening{color:var(--ondark)}
+  .news.has-challenges{max-width:none;margin:28px 0 0;background:linear-gradient(180deg,rgba(34,211,238,.09),rgba(139,131,240,.05)),var(--bg)}
+  .challenge-grid{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px}
+  .challenge-grid .challenge-news{display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:14px 16px;margin:0;border:1px solid var(--line-dark);border-radius:12px;background:rgba(255,255,255,.03);font-size:.95rem;color:var(--ondark);line-height:1.5}
+  .challenge-grid .challenge-news h2{font-size:clamp(1.1rem,2.2vw,1.3rem);margin:0 0 6px}
+  .challenge-grid .challenge-news h2 a{color:#fff;border-bottom:0}
+  .challenge-grid .challenge-news h2 a:hover{color:var(--cyan)}
+  .challenge-grid .challenge-news p{margin-bottom:8px;color:var(--ondark-mut)}
+  .challenge-grid .challenge-link{margin-top:auto}
+  @media(max-width:640px){.challenge-grid{grid-template-columns:1fr}}
+  .challenge-grid{margin-bottom:0}
+  .challenges-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;margin-bottom:14px;font-size:.98rem;line-height:1.5;color:var(--ondark)}
+  .challenges-head b{color:#fff;font-weight:600}
+  .news.news-only{max-width:none;margin:14px 0 0;background:linear-gradient(180deg,rgba(34,211,238,.09),rgba(139,131,240,.05)),var(--bg)}
 
   /* TOPIC STRIP */
   .strip{background:var(--bg2);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:30px 0}
@@ -184,6 +198,13 @@
   .contact-line{margin-top:40px;text-align:center;font-size:.98rem;color:var(--muted)}
   .contact-line a{color:#0e8ba3;font-weight:500}
 
+  /* REVIEWER ACKNOWLEDGMENTS */
+  .reviewer-list{list-style:none;columns:4;column-gap:32px;padding:0;margin:0}
+  .reviewer-list li{break-inside:avoid;padding:0 0 12px;font-size:.95rem;line-height:1.5;color:var(--ink);overflow-wrap:anywhere}
+  @media(max-width:1000px){.reviewer-list{columns:3}}
+  @media(max-width:760px){.reviewer-list{columns:2;column-gap:24px}}
+  @media(max-width:480px){.reviewer-list{columns:1}}
+
   /* FOOTER */
   footer{background:var(--bg);color:var(--ondark-mut);padding:64px 0 40px;border-top:1px solid var(--line-dark)}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line-dark)}
@@ -206,13 +227,15 @@
     .band-inner{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr 1fr}
   }
-  @media(max-width:640px){
-    section{padding:64px 0}
+  @media(max-width:1000px){
     .navlinks{position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;background:rgba(10,10,15,.97);backdrop-filter:blur(12px);padding:12px 16px 18px;border-bottom:1px solid var(--line-dark);display:none}
     .navlinks.open{display:flex}
     .navlinks a{padding:12px 14px}
     .navlinks a.cta{margin-left:0;text-align:center;margin-top:6px}
     .burger{display:flex}
+  }
+  @media(max-width:640px){
+    section{padding:32px 0 64px}
     .g3{grid-template-columns:1fr}
     .strip-grid{grid-template-columns:repeat(2,1fr);gap:10px}
     .people,.people.orgs{grid-template-columns:repeat(2,1fr)}
@@ -242,6 +265,7 @@
       <a href="#schedule">Schedule</a>
       <a href="#speakers">Speakers</a>
       <a href="#organizers">Organizers</a>
+      <a href="#reviewer-thanks">Reviewers</a>
       <a href="#cfp" class="cta">Call for papers</a>
     </nav>
   </div>
@@ -271,31 +295,44 @@
         <circle cx="9.5" cy="18.5" r="0.1" fill="#22d3ee"/>
       </svg>
     </div>
-    <div class="news" role="region" aria-label="Workshop news">
-      <span class="news-badge"><span class="pulse" aria-hidden="true"></span> News</span>
-      <ul class="news-list">
+    <span class="eyebrow on-dark">NeurIPS 2026 Workshop · Sydney, Australia · December 11 or 12, 2026</span>
+    <h1>World Models in <span class="accent">Physical AI</span></h1>
+    <p class="lede">Learned models that simulate, plan, and act in the real world — bringing together generative modeling, reinforcement learning, robotics, computer vision, autonomous driving, and simulation.</p>
+    <div class="news has-challenges" id="challenges" role="region" aria-label="Co-located challenges">
+      <div class="challenges-head"><span class="news-tag">Co-located Challenges</span> <b>Results and winners to be announced at the workshop.</b></div>
+      <ul class="challenge-grid" aria-label="Co-located challenges">
         <li class="challenge-news">
-          <span class="news-tag">Challenge · Opens October 5</span>
           <h2><a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener">AV Causal Scenario Retrieval Challenge</a></h2>
-          <p>Opens for participation on <b><time datetime="2026-10-05">October 5, 2026</time></b>.</p>
           <a class="challenge-link" href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener">Explore the challenge on Hugging Face →</a>
         </li>
+        <li class="challenge-news">
+          <h2><a href="https://www.nuscenes.org/nureasoning" target="_blank" rel="noopener">nuReasoning Challenge</a></h2>
+          <a class="challenge-link" href="https://www.nuscenes.org/nureasoning" target="_blank" rel="noopener">Explore the nuReasoning challenge →</a>
+        </li>
+        <li class="challenge-news">
+          <h2><a href="https://huggingface.co/spaces/KIT-MRT/KITScenes-LongTail-Challenge" target="_blank" rel="noopener">KITScenes LongTail - World Modeling Challenge</a></h2>
+          <a class="challenge-link" href="https://huggingface.co/spaces/KIT-MRT/KITScenes-LongTail-Challenge" target="_blank" rel="noopener">Explore the challenge on Hugging Face →</a>
+        </li>
+        <li class="challenge-news">
+          <h2><a href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026" target="_blank" rel="noopener">AlpaSim Challenge 2026</a></h2>
+          <a class="challenge-link" href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026" target="_blank" rel="noopener">Explore the challenge on Hugging Face →</a>
+        </li>
+      </ul>
+    </div>
+    <div class="news news-only" role="region" aria-label="Workshop news">
+      <span class="news-badge"><span class="pulse" aria-hidden="true"></span> News</span>
+      <ul class="news-list">
         <li><span class="news-tag rev">Paper reviews</span> <b>Paper reviews are out.</b></li>
       </ul>
     </div>
-    <span class="eyebrow on-dark">NeurIPS 2026 Workshop · Sydney</span>
-    <h1>World Models<br>in <span class="accent">Physical AI</span></h1>
-    <p class="lede">Learned models that simulate, plan, and act in the real world — bringing together generative modeling, reinforcement learning, robotics, computer vision, autonomous driving, and simulation.</p>
-    <div class="meta">
-      <span><span class="dot">●</span> <b>December 12 or 13, 2026</b></span>
-      <span><span class="dot">●</span> <b>Sydney, Australia</b></span>
-    </div>
+    <!--
     <div class="btns">
       <a href="#cfp" class="btn btn-primary">Call for papers
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a href="#schedule" class="btn btn-ghost">View schedule</a>
     </div>
+    -->
   </div>
 </section>
 
@@ -350,7 +387,7 @@
     <div class="sec-head" id="questions" style="margin-top:72px">
       <span class="eyebrow">The debate</span>
       <h2>Open questions we'll take positions on</h2>
-      <p>The program — talks, a panel, and a closing debate — is organized around concrete, contested questions.</p>
+      <p>The program — talks, a debate, and a panel — is organized around concrete, contested questions.</p>
     </div>
     <div class="q-list">
       <div class="qitem"><div class="num">1</div><div><h4>What does "correct" mean?</h4><p>Can we agree on benchmarks that measure physical consistency and downstream control utility — not just pixel fidelity? For closed-loop simulators, should evaluation preserve policy rankings and real-world failure modes?</p></div></div>
@@ -358,6 +395,48 @@
       <div class="qitem"><div class="num">3</div><div><h4>Controllability &amp; long horizons</h4><p>How do we keep rollouts action-controllable and physically consistent over long horizons — preserving object identity, contact, causality, and state under repeated interventions?</p></div></div>
       <div class="qitem"><div class="num">4</div><div><h4>Sim-to-real &amp; real-to-sim</h4><p>When can a generative world model replace or augment a physics or reconstruction-based simulator for training and evaluating deployable policies?</p></div></div>
       <div class="qitem"><div class="num">5</div><div><h4>Scaling laws</h4><p>Do world models for physical AI follow favorable scaling laws, and what multimodal data unlocks generalization to new embodiments, action spaces, and domains?</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPEAKERS ============ -->
+<section id="speakers">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Invited speakers</span>
+      <h2>Keynote speakers</h2>
+    </div>
+    <div class="people">
+      <div class="person">
+        <img class="avatar" src="photos/mengyue_yang.jpg" alt="Mengyue Yang" loading="lazy" referrerpolicy="no-referrer" data-remote="https://ymy4323460.github.io/assets/img/IMG_1201.JPG" data-initials="MY" onerror="avFallback(this)">
+        <a class="nm" href="https://ymy4323460.github.io/" target="_blank" rel="noopener">Mengyue Yang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Assistant Professor,<br>University of Bristol</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/katerina_fragkiadaki.jpg" alt="Katerina Fragkiadaki" loading="lazy" referrerpolicy="no-referrer" data-remote="https://www.cs.cmu.edu/~katef/images/KaterinaFragkiadaki.png" data-initials="KF" onerror="avFallback(this)">
+        <a class="nm" href="https://www.cs.cmu.edu/~katef/" target="_blank" rel="noopener">Katerina Fragkiadaki <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Associate Professor,<br>Carnegie Mellon University</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/jan_eric_lenssen.jpg" alt="Jan Eric Lenssen" loading="lazy" referrerpolicy="no-referrer" data-remote="https://janericlenssen.github.io/figures/photo4.jpg" data-initials="JL" onerror="avFallback(this)">
+        <a class="nm" href="https://janericlenssen.github.io/" target="_blank" rel="noopener">Jan Eric Lenssen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Senior Researcher,<br>MPI for Informatics</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="https://maxjiang.ml/assets/img/max_profile_pic_sq.JPG" alt="Max Jiang" loading="lazy" referrerpolicy="no-referrer" data-initials="MJ" onerror="avFallback(this)">
+        <a class="nm" href="https://maxjiang.ml/" target="_blank" rel="noopener">Max Jiang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Staff Research Scientist,<br>Waymo</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="photos/danijar_hafner.jpg" alt="Danijar Hafner" loading="lazy" referrerpolicy="no-referrer" data-remote="https://danijar.com/asset/face.jpg" data-initials="DH" onerror="avFallback(this)">
+        <a class="nm" href="https://danijar.com/" target="_blank" rel="noopener">Danijar Hafner <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Staff Research Scientist,<br>Google DeepMind</div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="https://virtualhumans.mpi-inf.mpg.de/img/GPM_new_crop.png" alt="Gerard Pons-Moll" loading="lazy" referrerpolicy="no-referrer" data-initials="GP" onerror="avFallback(this)">
+        <a class="nm" href="https://virtualhumans.mpi-inf.mpg.de/people/pons-moll.html" target="_blank" rel="noopener">Gerard Pons-Moll <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="af">Professor of Computer Science,<br>University of Tübingen</div>
+      </div>
     </div>
   </div>
 </section>
@@ -417,7 +496,7 @@
         <div class="tl key"><span class="node"></span><div class="date">September 29, 2026</div><div class="lbl">Author notification</div></div>
         <div class="tl key"><span class="node"></span><div class="date"><time datetime="2026-10-05">October 5, 2026</time></div><div class="lbl"><a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:600;text-decoration:underline;text-underline-offset:3px">AV Causal Scenario Retrieval Challenge</a> opens for participation</div></div>
         <div class="tl"><span class="node"></span><div class="date">November 2026</div><div class="lbl">Camera-ready &amp; final posters</div></div>
-        <div class="tl key"><span class="node"></span><div class="date">December 12 or 13, 2026</div><div class="lbl">Workshop day · Sydney</div></div>
+        <div class="tl key"><span class="node"></span><div class="date">December 11 or 12, 2026</div><div class="lbl">Workshop day · Sydney</div></div>
       </div>
       <div class="dates-note">
         <h3>Submissions at a glance</h3>
@@ -438,22 +517,20 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Program</span>
-      <h2>Schedule</h2>
-      <p>A single-track, one-day program balancing invited talks, contributed content, and structured discussion.</p>
+      <h2>Tentative schedule</h2>
     </div>
     <div class="sched">
       <div class="slot"><div class="time">08:30</div><div><h4>Opening remarks</h4></div></div>
       <div class="slot"><div class="time">09:00</div><div><h4>Invited talks I <a class="tag invited" href="#speakers">Invited</a></h4><p>Generative and video world models.</p></div></div>
       <div class="slot"><div class="time">10:30</div><div><h4>Coffee &amp; poster session I <span class="tag break">Break</span></h4></div></div>
-      <div class="slot"><div class="time">11:00–11:25</div><div><h4>AV Causal Scenario Retrieval Challenge <a class="tag challenge" href="#challenge">Challenge</a></h4><p>25 minutes · Task, results, and winners.</p></div></div>
-      <div class="slot"><div class="time">11:25–11:50</div><div><h4>nuReasoning Challenge <a class="tag challenge" href="https://www.nuscenes.org/nureasoning" target="_blank" rel="noopener">Challenge ↗</a></h4><p>25 minutes · <a href="https://www.nuscenes.org/nureasoning" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">Explore the nuReasoning challenge →</a></p></div></div>
-      <div class="slot"><div class="time">11:50</div><div><h4>Lunch &amp; poster sessions <span class="tag break">Break</span></h4></div></div>
+      <div class="slot"><div class="time">11:00–11:40</div><div><h4>Challenge Results I <a class="tag challenge" href="#challenges">Challenge</a></h4><p>Results and winners · <a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">AV Causal Scenario Retrieval Challenge</a> · <a href="https://www.nuscenes.org/nureasoning" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">nuReasoning Challenge</a></p></div></div>
+      <div class="slot"><div class="time">11:40–12:20</div><div><h4>Debate: Pixels vs. latents <a class="tag discuss" href="#questions">Debate</a></h4><p>Should world models predict in observation space or in abstract latent space?</p></div></div>
+      <div class="slot"><div class="time">12:20</div><div><h4>Lunch &amp; poster sessions <span class="tag break">Break</span></h4></div></div>
       <div class="slot"><div class="time">13:30</div><div><h4>Invited talks II <a class="tag invited" href="#speakers">Invited</a></h4><p>World models for action and robotics.</p></div></div>
       <div class="slot"><div class="time">15:00</div><div><h4>Panel <a class="tag discuss" href="#questions">Panel</a></h4><p>"How should we evaluate world models for physical AI?"</p></div></div>
       <div class="slot"><div class="time">15:45</div><div><h4>Coffee &amp; poster session II <span class="tag break">Break</span></h4></div></div>
-      <div class="slot"><div class="time">16:15–16:40</div><div><h4>KITScenes LongTail - World Modeling Challenge <a class="tag challenge" href="https://huggingface.co/spaces/KIT-MRT/KITScenes-LongTail-Challenge" target="_blank" rel="noopener">Challenge ↗</a></h4><p>25 minutes · <a href="https://huggingface.co/spaces/KIT-MRT/KITScenes-LongTail-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">Explore the challenge on Hugging Face →</a></p></div></div>
-      <div class="slot"><div class="time">16:40–17:05</div><div><h4>AlpaSim Challenge 2026 <a class="tag challenge" href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026" target="_blank" rel="noopener">Challenge ↗</a></h4><p>25 minutes · <a href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">Explore the AlpaSim challenge on Hugging Face →</a></p></div></div>
-      <div class="slot"><div class="time">17:05</div><div><h4>Closing remarks</h4></div></div>
+      <div class="slot"><div class="time">16:20–17:00</div><div><h4>Challenge Results II <a class="tag challenge" href="#challenges">Challenge</a></h4><p>Results and winners · <a href="https://huggingface.co/spaces/KIT-MRT/KITScenes-LongTail-Challenge" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">KITScenes LongTail - World Modeling Challenge</a> · <a href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026" target="_blank" rel="noopener" style="color:#0e8ba3;font-weight:500;text-decoration:underline;text-underline-offset:3px">AlpaSim Challenge 2026</a></p></div></div>
+      <div class="slot"><div class="time">17:00</div><div><h4>Closing remarks</h4></div></div>
     </div>
     <p class="sched-note">Tentative schedule — talk titles and speaker assignments will be published before the workshop.</p>
   </div>
@@ -471,43 +548,6 @@
       <a href="https://huggingface.co/spaces/nvidia/AV-Causal-Scenario-Retrieval-Challenge" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:26px">Visit the challenge page
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SPEAKERS ============ -->
-<section id="speakers">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Invited speakers</span>
-      <h2>Confirmed speakers</h2>
-    </div>
-    <div class="people">
-      <div class="person">
-        <img class="avatar" src="photos/mengyue_yang.jpg" alt="Mengyue Yang" loading="lazy" referrerpolicy="no-referrer" data-remote="https://ymy4323460.github.io/assets/img/IMG_1201.JPG" data-initials="MY" onerror="avFallback(this)">
-        <a class="nm" href="https://ymy4323460.github.io/" target="_blank" rel="noopener">Mengyue Yang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        <div class="af">Assistant Professor,<br>University of Bristol</div>
-      </div>
-      <div class="person">
-        <img class="avatar" src="photos/katerina_fragkiadaki.jpg" alt="Katerina Fragkiadaki" loading="lazy" referrerpolicy="no-referrer" data-remote="https://www.cs.cmu.edu/~katef/images/KaterinaFragkiadaki.png" data-initials="KF" onerror="avFallback(this)">
-        <a class="nm" href="https://www.cs.cmu.edu/~katef/" target="_blank" rel="noopener">Katerina Fragkiadaki <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        <div class="af">Associate Professor,<br>Carnegie Mellon University</div>
-      </div>
-      <div class="person">
-        <img class="avatar" src="photos/jan_eric_lenssen.jpg" alt="Jan Eric Lenssen" loading="lazy" referrerpolicy="no-referrer" data-remote="https://janericlenssen.github.io/figures/photo4.jpg" data-initials="JL" onerror="avFallback(this)">
-        <a class="nm" href="https://janericlenssen.github.io/" target="_blank" rel="noopener">Jan Eric Lenssen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        <div class="af">Senior Researcher,<br>MPI for Informatics</div>
-      </div>
-      <div class="person">
-        <img class="avatar" src="photos/max_jiang.jpg" alt="Max Jiang" loading="lazy" referrerpolicy="no-referrer" data-initials="MJ" onerror="avFallback(this)">
-        <a class="nm" href="https://maxjiang.ml/" target="_blank" rel="noopener">Max Jiang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        <div class="af">Staff Research Scientist,<br>Waymo</div>
-      </div>
-      <div class="person">
-        <img class="avatar" src="photos/danijar_hafner.jpg" alt="Danijar Hafner" loading="lazy" referrerpolicy="no-referrer" data-remote="https://danijar.com/asset/face.jpg" data-initials="DH" onerror="avFallback(this)">
-        <a class="nm" href="https://danijar.com/" target="_blank" rel="noopener">Danijar Hafner <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        <div class="af">Staff Research Scientist,<br>Google DeepMind</div>
-      </div>
     </div>
   </div>
 </section>
@@ -552,6 +592,208 @@
   </div>
 </section>
 
+<!-- ============ REVIEWER ACKNOWLEDGMENTS ============ -->
+<section id="reviewer-thanks" aria-labelledby="reviewer-thanks-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Acknowledgments</span>
+      <h2 id="reviewer-thanks-title">Thank you to our reviewers</h2>
+      <p>We gratefully thank the reviewers who contributed their time and expertise to evaluating submissions and helping shape the workshop program.</p>
+    </div>
+    <ul class="reviewer-list" aria-label="Workshop reviewers">
+      <li>Abhijeet Dhoke</li>
+      <li>abhinav sadras</li>
+      <li>Abhinaw Priyadershi</li>
+      <li>Abhishek Peri</li>
+      <li>Achyuthan Sivasankar</li>
+      <li>Adam Atoom</li>
+      <li>Aditya Satish Patil</li>
+      <li>Aditya Sehgal</li>
+      <li>Adwait Patkhedkar</li>
+      <li>Ahanaf Hasan Ariq</li>
+      <li>Ahmed S. Abdelrahman</li>
+      <li>Aiden Dsouza</li>
+      <li>Albert Podusenko</li>
+      <li>Alberto Gonzalo Rodriguez Salgado</li>
+      <li>Aleksandar Slavov</li>
+      <li>Alessandra Russo</li>
+      <li>Alperen Degirmenci</li>
+      <li>Aman Mehta</li>
+      <li>Amna Jamal</li>
+      <li>ANBANG LIU</li>
+      <li>Andrew Ballard</li>
+      <li>Angelos Amanatiadis</li>
+      <li>Anidipta Pal</li>
+      <li>Anikait Rana</li>
+      <li>Anton Ivanov Hristov</li>
+      <li>April Yang</li>
+      <li>Arslan Abdul Ghaffar</li>
+      <li>Avisek Naug</li>
+      <li>Ayoub Louaye Bouaziz</li>
+      <li>Ayushi Mehrotra</li>
+      <li>Baiang Li</li>
+      <li>Bala Krishna S Vegesna</li>
+      <li>Bangjun Huang</li>
+      <li>Bingyin Zhao</li>
+      <li>Bishoy Galoaa</li>
+      <li>Bonnie Li</li>
+      <li>Brett Barkley</li>
+      <li>Brian Y Tsui</li>
+      <li>Chaehyun Kim</li>
+      <li>Chanseok Kang</li>
+      <li>Christina Xiao</li>
+      <li>Chuhan ZHANG</li>
+      <li>Cristian Rodriguez-Opazo</li>
+      <li>David Erman</li>
+      <li>Deepak Ravishankar</li>
+      <li>Deyuan Qu</li>
+      <li>Dhruv Gupta</li>
+      <li>Dianwei Chen</li>
+      <li>Eeshan G Dandamudi</li>
+      <li>Elahe Yahyapour</li>
+      <li>Erlis Lushtaku</li>
+      <li>Fabio F. Oberweger</li>
+      <li>Frieder Stolzenburg</li>
+      <li>Fu-En Yang</li>
+      <li>Gabriel Villalonga Pineda</li>
+      <li>Gaétan Marceau Caron</li>
+      <li>Geigh Zollicoffer</li>
+      <li>Gerrit Olivier</li>
+      <li>Giorgio Buttazzo</li>
+      <li>Hamish Scott</li>
+      <li>Haoran Li</li>
+      <li>Harshit Aggarwal</li>
+      <li>Hasaan Ahmad</li>
+      <li>He Zhang</li>
+      <li>Hojin Ahn</li>
+      <li>Ian R. Fasel</li>
+      <li>Ikuro Sato</li>
+      <li>Ingyu Lee</li>
+      <li>Jiaben Chen</li>
+      <li>Jiaheng Chen</li>
+      <li>Jiajun Liu</li>
+      <li>Jialei Chen</li>
+      <li>Jianwen Lyu</li>
+      <li>Jiaxing Li</li>
+      <li>Jiayi Zhang</li>
+      <li>Jiho Ryoo</li>
+      <li>Jingde Chen</li>
+      <li>Jobst Heitzig</li>
+      <li>Jonas Petersen</li>
+      <li>Jongwon Ryu</li>
+      <li>Joseph Bakarji</li>
+      <li>Joshua Cheung</li>
+      <li>Kabir Singh Grewal</li>
+      <li>Kai Tian</li>
+      <li>Kailun Yang</li>
+      <li>Kamil Alp Çınar</li>
+      <li>Kenneth Ge</li>
+      <li>Keshav Goyal</li>
+      <li>Konstantinos Tertikas</li>
+      <li>Krishnam Soni</li>
+      <li>Kushaan Naskar</li>
+      <li>Leilani H. Gilpin</li>
+      <li>Li Songyi</li>
+      <li>Lorenzo Niccolini</li>
+      <li>Luc H. Leroy</li>
+      <li>Maciej Lewandowski</li>
+      <li>Mahmut Yurt</li>
+      <li>Malo de Pastor</li>
+      <li>Marcos Gómez-Bracamonte</li>
+      <li>Matei C. Ignuta-Ciuncanu</li>
+      <li>Mathieu Cocheteux</li>
+      <li>Matthias Jammot</li>
+      <li>Md Zafar Anwar</li>
+      <li>MEHMET HAKLIDIR</li>
+      <li>Menghan Chen</li>
+      <li>Michael Arthur Leopold Pearce</li>
+      <li>Mingkai Deng</li>
+      <li>Minjong Kim</li>
+      <li>Nahid Alam</li>
+      <li>Nevasini Sasikumar</li>
+      <li>Nicholas Babey</li>
+      <li>Nicky van Zutphen</li>
+      <li>Nikodem Sebastian Zymla</li>
+      <li>Nisarga Nilavadi</li>
+      <li>Nischal Reddy Chandra</li>
+      <li>Nishath Rajiv Ranasinghe</li>
+      <li>Oliver Obst</li>
+      <li>Om Rastogi</li>
+      <li>Osaze James Obahor</li>
+      <li>Prakash Palanivelu Rajmohan</li>
+      <li>Prakrut Kotecha</li>
+      <li>Rafid Mahmood</li>
+      <li>Raghavendra Thakur</li>
+      <li>Rahul Bhadani</li>
+      <li>Rajarshi Das</li>
+      <li>Reuben Stanley</li>
+      <li>Rishikesh K Muralimohan</li>
+      <li>Rithik Devaraj Satarla</li>
+      <li>Rohun Agrawal</li>
+      <li>Roni Goldshmidt</li>
+      <li>Royden Wagner</li>
+      <li>Ruihe An</li>
+      <li>Runheng Zuo</li>
+      <li>Ruphan Swaminathan</li>
+      <li>Ryan Hardesty Lewis</li>
+      <li>Sabyasachi Gupta</li>
+      <li>Sahil Singh</li>
+      <li>Sai Karthik Bulusu</li>
+      <li>Samuele Punzo</li>
+      <li>Sara Ghazanfari</li>
+      <li>Satyapragnya Kar</li>
+      <li>Saurav Sharma</li>
+      <li>Saurav Upadhyaya</li>
+      <li>Shahid Kamal</li>
+      <li>Shashank Agnihotri</li>
+      <li>Shimanto Bhowmik</li>
+      <li>Shounak Sural</li>
+      <li>Shuai Kyle Zheng</li>
+      <li>Shubham Shrivastava</li>
+      <li>Siddhant Rana</li>
+      <li>Siddharth Bejadi</li>
+      <li>Sifat Muhammad Abdullah</li>
+      <li>Silvio Galesso</li>
+      <li>Soohee Han</li>
+      <li>Sriram Swaminathan</li>
+      <li>Stanislav Moiseev</li>
+      <li>Susely Figueroa Iglesias</li>
+      <li>Syeda Fiza Rubab</li>
+      <li>Tabitha Edith Lee</li>
+      <li>Tamas Matuszka</li>
+      <li>Tanishq Chaudhary</li>
+      <li>Thijs van de Laar</li>
+      <li>Thomas J. Cashman</li>
+      <li>Tianjin Huang</li>
+      <li>Tinghe Zhang</li>
+      <li>Tobias Meisen</li>
+      <li>Tsun-Yi Yang</li>
+      <li>Usman M. Khan</li>
+      <li>Utkarsh Aashu Mishra</li>
+      <li>Utsav Sharma</li>
+      <li>Vighnesh Vatsal</li>
+      <li>Weitao Chen</li>
+      <li>Xiaokai Bai</li>
+      <li>Xiaoyu Zhu</li>
+      <li>Xue Mi</li>
+      <li>Xuming He</li>
+      <li>Yichao Liu</li>
+      <li>Yifei Jin</li>
+      <li>Yisheng An</li>
+      <li>Yug Ajmera</li>
+      <li>Yugang Wang</li>
+      <li>Yuhao Xu</li>
+      <li>Yunfei Ge</li>
+      <li>Yunxiao Shi</li>
+      <li>Zheyu Fan</li>
+      <li>Zheyuan Hu</li>
+      <li>Zheyuan Zhang</li>
+      <li>Zi Wang</li>
+      <li>Zihang Wang</li>
+    </ul>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -561,7 +803,7 @@
           <span class="mark"><svg viewBox="0 0 32 32"><path d="M4 20c4-6 8 6 12 0s8-6 12 0" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="11" r="2" fill="#8b83f0"/></svg></span>
           World Models in Physical AI
         </div>
-        <p>A one-day NeurIPS 2026 workshop on learned models of physical-world dynamics for embodied AI.<br>December 12 or 13, 2026 · Sydney, Australia.</p>
+        <p>A one-day NeurIPS 2026 workshop on learned models of physical-world dynamics for embodied AI.<br>December 11 or 12, 2026 · Sydney, Australia.</p>
       </div>
       <div>
         <h4>Explore</h4>
@@ -604,8 +846,448 @@
         if(e.isIntersecting){links.forEach(function(x){x.style.color='';});if(!l.classList.contains('cta'))l.style.color='#fff';}
       });
     },{rootMargin:'-45% 0px -50% 0px'});
-    ['about','topics','dates','schedule','speakers','organizers'].forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+    ['about','topics','dates','schedule','speakers','organizers','reviewer-thanks'].forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
   }
 </script>
-</body>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://perplexity.localhost","http://localhost:1420","http://127.0.0.1:1420","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  const DEFAULT_LINE_HEIGHT = 16;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  const PICK_CAPABILITIES = ["pick"];
+  const PICK_CHAIN_LENGTH = 4;
+  const PICK_MAX_TEXT_CHARS = 120;
+  const PICK_MAX_HTML_CHARS = 300;
+
+  function truncate(value, maxChars) {
+    return value.length > maxChars ? value.slice(0, maxChars - 1) + "…" : value;
+  }
+
+  function isPickableElement(element) {
+    return (
+      element instanceof Element &&
+      element !== document.documentElement &&
+      element !== document.body
+    );
+  }
+
+  function resolvePickTarget(x, y) {
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+    const element = document.elementFromPoint(x, y);
+    return isPickableElement(element) ? element.closest("svg") || element : null;
+  }
+
+  function pickLabel(element) {
+    if (element.id) return element.localName + "#" + element.id;
+    return [element.localName].concat(Array.from(element.classList).slice(0, 2)).join(".");
+  }
+
+  // Only attributes that help find the element in source. data-* values and URL
+  // query strings or fragments can carry tokens.
+  const PICK_ATTRIBUTES = new Set([
+    "id",
+    "class",
+    "name",
+    "type",
+    "role",
+    "alt",
+    "aria-label",
+    "href",
+    "src",
+  ]);
+
+  function pickAttributeValue(attribute) {
+    return attribute.name === "href" || attribute.name === "src"
+      ? attribute.value.split(/[?#]/)[0]
+      : attribute.value;
+  }
+
+  function describePickElement(element) {
+    const chain = [];
+    for (
+      let current = element;
+      isPickableElement(current) && chain.length < PICK_CHAIN_LENGTH;
+      current = current.parentElement
+    ) {
+      chain.unshift(current);
+    }
+    const attributes = Array.from(element.attributes)
+      .filter((attribute) => PICK_ATTRIBUTES.has(attribute.name))
+      .map((attribute) => ` ${attribute.name}="${pickAttributeValue(attribute).replace(/"/g, "&quot;")}"`)
+      .join("");
+    const text = (element.innerText || element.textContent || "").replace(/\s+/g, " ").trim();
+    return {
+      chain: chain.map(pickLabel),
+      html: truncate(`<${element.localName}${attributes}>`, PICK_MAX_HTML_CHARS),
+      text: text ? truncate(text, PICK_MAX_TEXT_CHARS) : undefined,
+    };
+  }
+
+  // Hover asks once per frame, and innerText on a large section forces layout,
+  // so only the rect is re-read while the pointer stays on the same element.
+  // Clicks ask for fresh details since the page may have changed the element.
+  let lastPick = null;
+
+  function describePickTarget(element, fresh) {
+    if (fresh || lastPick?.element !== element) {
+      lastPick = { element, details: describePickElement(element) };
+    }
+    const rect = element.getBoundingClientRect();
+    return {
+      rect: { x: rect.left, y: rect.top, width: rect.width, height: rect.height },
+      ...lastPick.details,
+    };
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+      capabilities: PICK_CAPABILITIES,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_PICK") {
+      const element = resolvePickTarget(event.data.x, event.data.y);
+      postToTrustedTop({
+        type: "INLINE_EDIT_PICK_RESULT",
+        seq: event.data.seq,
+        target: element ? describePickTarget(element, event.data.fresh === true) : null,
+      });
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_BY") {
+      const { deltaX, deltaY, deltaMode } = event.data;
+      if (!scrollForwarding || !Number.isFinite(deltaX) || !Number.isFinite(deltaY)) return;
+      if (deltaMode !== 0 && deltaMode !== 1 && deltaMode !== 2) return;
+      const lineHeight =
+        parseFloat(getComputedStyle(document.documentElement).lineHeight) || DEFAULT_LINE_HEIGHT;
+      const scaleX = deltaMode === 1 ? lineHeight : deltaMode === 2 ? window.innerWidth : 1;
+      const scaleY = deltaMode === 1 ? lineHeight : deltaMode === 2 ? window.innerHeight : 1;
+      // The selection overlay receives the wheel event instead of this iframe.
+      // Instant scrolling preserves trackpad deltas even on smooth-scroll sites.
+      window.scrollBy({ left: deltaX * scaleX, top: deltaY * scaleY, behavior: "instant" });
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
 </html>
